@@ -26,11 +26,12 @@ export default {
       browser: true
     }),
     typescript({
-      clean: true
+      clean: true,
+      exclude: ['**/*.test.ts']
     }),
     commonjs({
       include: ['node_modules/**'],
-      exclude: ['**/*.stories.js'],
+      exclude: ['**/*.stories.js', '**/*.test.ts'],
       namedExports: {
         'node_modules/react/react.js': [
           'Children',

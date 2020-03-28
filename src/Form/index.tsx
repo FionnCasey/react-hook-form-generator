@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Heading, Box, Stack, ButtonGroup, Button } from '@chakra-ui/core';
 import { useForm, FormContext, UseFormOptions } from 'react-hook-form';
+import get from 'lodash.get';
 
 import { Schema, FormStyles } from '../types';
 import { StylesCtx } from '../hooks';
@@ -8,13 +9,15 @@ import { renderField } from '../utils';
 import { TextField, textFieldStyles } from '../TextField';
 import { ArrayField, arrayFieldStyles } from '../ArrayField';
 
+type ButtonSpec = 'submit' | 'reset' | React.FC;
+
 interface FormProps {
   title?: string;
   schema: Schema;
   handleSubmit: (values: any, e?: React.BaseSyntheticEvent<object, any, any>) => void;
   styles?: FormStyles;
   submitText?: string;
-  buttons?: Array<'submit' | 'reset' | React.FC>;
+  buttons?: ButtonSpec[];
   useFormOptions?: UseFormOptions;
 }
 
@@ -66,24 +69,35 @@ export const Form: React.FC<FormProps> = ({
 }) => {
   const methods = useForm(useFormOptions);
 
+  const formStyles = useMemo(() => {
+    return get(styles, 'form', {
+      title: undefined,
+      container: undefined,
+      spacing: undefined,
+      buttonGroup: undefined,
+      resetButton: undefined,
+      submitButton: undefined
+    });
+  }, [styles]);
+
   return (
     <StylesCtx.Provider value={styles}>
       <FormContext {...methods}>
-        <Box as="form" onSubmit={methods.handleSubmit(handleSubmit)} {...styles.form.container}>
-          {!!title && <Heading {...styles.form.title}>{title}</Heading>}
-          <Stack spacing={styles.form.spacing}>
+        <Box as="form" onSubmit={methods.handleSubmit(handleSubmit)} {...formStyles.container}>
+          {!!title && <Heading {...formStyles.title}>{title}</Heading>}
+          <Stack spacing={formStyles.spacing}>
             {Object.entries(schema).map(entry => (
               <Box key={entry[0]}>{renderField(entry, components)}</Box>
             ))}
           </Stack>
-          <ButtonGroup {...styles.form.buttonGroup}>
+          <ButtonGroup {...formStyles.buttonGroup}>
             {buttons.map((button, i) => {
               return button === 'reset' ? (
-                <Button key={i} type="reset" {...styles.form.resetButton}>
+                <Button key={i} type="reset" {...formStyles.resetButton}>
                   Reset
                 </Button>
               ) : button === 'submit' ? (
-                <Button key={i} type="submit" {...styles.form.submitButton}>
+                <Button key={i} type="submit" {...formStyles.submitButton}>
                   {submitText || 'Submit'}
                 </Button>
               ) : null;

@@ -10,7 +10,7 @@ export const renderField = (
   id?: string,
   key?: string
 ) => {
-  let Component: React.FC<FieldProps> = null;
+  let Component: React.FC<FieldProps> | null = null;
 
   if (field.fieldType === 'custom') {
     const customField = field as CustomField;

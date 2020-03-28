@@ -1,5 +1,5 @@
 {
-  "name": "@fionncasey/react-form-generator",
+  "name": "react-hook-form-generator",
   "version": "0.1.0",
   "description": "Generates React forms from schema using Chakra UI and React Hook Form",
   "main": "build/index.js",
@@ -13,7 +13,7 @@
     }
   ],
   "scripts": {
-    "test": "jest --config jestconfig.json",
+    "test": "jest --config jest.config.json",
     "build": "rollup -c",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
@@ -28,6 +28,7 @@
   },
   "keywords": [
     "react",
+    "react-form",
     "form-generator",
     "form-schema"
   ],
@@ -38,9 +39,9 @@
     "url": "git+https://github.com/FionnCasey/react-form-generator.git"
   },
   "bugs": {
-    "url": "https://github.com/FionnCasey/react-form-generator/issues"
+    "url": "https://github.com/FionnCasey/react-hook-form-generator/issues"
   },
-  "homepage": "https://github.com/FionnCasey/react-form-generator#readme",
+  "homepage": "https://github.com/FionnCasey/react-hook-form-generator#readme",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -62,6 +63,7 @@
     "@storybook/addon-links": "^5.3.17",
     "@storybook/addons": "^5.3.17",
     "@storybook/react": "^5.3.17",
+    "@testing-library/jest-dom": "^5.3.0",
     "@testing-library/react": "^10.0.1",
     "@types/lodash.get": "^4.4.6",
     "@types/lodash.merge": "^4.6.6",
@@ -69,6 +71,8 @@
     "babel-loader": "^8.1.0",
     "babel-preset-react-app": "^9.1.2",
     "emotion-theming": "^10.0.27",
+    "jest": "^25.2.3",
+    "prettier": "^2.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.1.3",
@@ -79,6 +83,7 @@
     "rollup-plugin-terser": "^5.3.0",
     "rollup-plugin-typescript2": "^0.26.0",
     "size-limit": "^4.4.2",
+    "ts-jest": "^25.2.1",
     "tslint": "^6.1.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"

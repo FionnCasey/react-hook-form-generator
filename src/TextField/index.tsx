@@ -20,9 +20,7 @@ interface Props {
   field: TextFieldProps;
 }
 
-export const textFieldStyles: FormStyles['textField'] = {
-
-};
+export const textFieldStyles: FormStyles['textField'] = {};
 
 export const TextField: React.FC<Props> = ({ id, name, field }) => {
   const { label, placeholder, htmlInputType, helperText, isRequired, leftInputAddon, rightInputAddon, styles = {} } = field;

@@ -88,7 +88,9 @@ export const ArrayField: React.FC<Props> = ({ name, field }) => {
   const tryRemove = (i: number) => {
     try {
       remove(i);
-    } catch (e) {}
+    } catch (e) {
+      // console.warn(e);
+    }
   };
 
   return (

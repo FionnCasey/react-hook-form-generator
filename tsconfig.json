@@ -30,7 +30,8 @@
     "node_modules",
     "build",
     ".storybook",
-    "examples"
+    "examples",
+    "**/*.test.ts"
   ],
   "esModuleInterop": true
 }
