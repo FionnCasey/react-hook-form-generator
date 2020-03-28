@@ -3,3 +3,4 @@ docs
 .storybook
 *.stories.js
 examples
+.env
