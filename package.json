@@ -2,14 +2,15 @@
   "name": "react-hook-form-generator",
   "version": "0.1.0",
   "description": "Generates React forms from schema using Chakra UI and React Hook Form",
-  "main": "build/index.js",
-  "module": "build/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "files": [
     "build"
   ],
   "size-limit": [
     {
-      "path": "build/*.js"
+      "path": "build/*.js",
+      "limit": "10 KB"
     }
   ],
   "scripts": {
@@ -36,15 +37,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FionnCasey/react-form-generator.git"
+    "url": "git+https://github.com/FionnCasey/react-hook-form-generator.git"
   },
   "bugs": {
     "url": "https://github.com/FionnCasey/react-hook-form-generator/issues"
   },
   "homepage": "https://github.com/FionnCasey/react-hook-form-generator#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "peerDependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

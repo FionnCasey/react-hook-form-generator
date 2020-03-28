@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "build",
+    "outDir": "dist",
     "module": "esnext",
     "target": "es5",
     "lib": [
@@ -28,7 +28,7 @@
   ],
   "exclude": [
     "node_modules",
-    "build",
+    "dist",
     ".storybook",
     "examples",
     "**/*.test.ts"
