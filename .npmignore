@@ -1,6 +1,6 @@
 node_modules
-docs
 .storybook
 *.stories.js
-examples
+stories
+docs
 .env

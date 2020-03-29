@@ -25,7 +25,7 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -c .storybook -o docs"
   },
   "keywords": [
     "react",
