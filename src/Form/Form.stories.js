@@ -27,9 +27,26 @@ const basicFormSchema = {
       isRequired: true,
     },
   },
-  custom: {
-    fieldType: "custom",
-    component: () => <h1>Custom Component</h1>,
+  objectField: {
+    fieldType: "object",
+    label: 'Person',
+    isCollapsable: true,
+    helperText: 'This is an object field',
+    fields: {
+      firstName: {
+        fieldType: "input",
+        inputType: "text",
+        label: "First Name",
+        placeholder: "First Name",
+        helperText: 'Helper text'
+      },
+      lastName: {
+        fieldType: "input",
+        inputType: "text",
+        label: "Last Name",
+        placeholder: "Last Name"
+      }
+    }
   },
 };
 
@@ -42,6 +59,9 @@ export const BasicForm = () => (
       defaultValues: {
         name: "hello",
         numbers: ["bing"],
+        objectField: {
+          firstName: 'Fionn'
+        }
       },
     }}
   />

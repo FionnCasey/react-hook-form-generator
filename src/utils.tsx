@@ -26,6 +26,10 @@ export const renderField = (
       Component = components.array;
       break;
 
+    case 'object':
+      Component = components.object;
+      break;
+
     default:
       throw new Error(`Invalid field type: ${field.fieldType}`);
   }

@@ -8,6 +8,7 @@ import { StylesCtx } from '../hooks';
 import { renderField } from '../utils';
 import { TextField, textFieldStyles } from '../TextField';
 import { ArrayField, arrayFieldStyles } from '../ArrayField';
+import { ObjectField, objectFieldStyles } from '../ObjectField';
 
 type ButtonSpec = 'submit' | 'reset' | React.FC;
 
@@ -27,7 +28,7 @@ const components = {
   number: TextField,
   switch: TextField,
   input: TextField,
-  object: TextField,
+  object: ObjectField,
   array: ArrayField,
   conditional: TextField
 };
@@ -48,13 +49,14 @@ export const defaultStyles: FormStyles = {
     },
     submitButton: {
       size: 'sm',
-      variantColor: 'teal'
+      variantColor: 'purple'
     },
     resetButton: {
       size: 'sm'
     }
   },
   arrayField: arrayFieldStyles,
+  objectField: objectFieldStyles,
   textField: textFieldStyles
 };
 

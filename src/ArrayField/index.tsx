@@ -18,6 +18,7 @@ import { ArrayFieldProps, ArrayStyles, FormStyles } from '../types';
 import { renderField } from '../utils';
 import { useStyles, useErrorMessage } from '../hooks';
 import { TextField } from '../TextField';
+import { ObjectField } from '../ObjectField';
 
 interface Props {
   name: string;
@@ -25,28 +26,31 @@ interface Props {
 }
 
 export const arrayFieldStyles: FormStyles['arrayField'] = {
+  listWrapper: {
+    spacing: 4,
+    marginTop: 2
+  },
   label: {
     padding: 0
   },
   toolbar: {
-    alignItems: 'center',
-    marginBottom: 2
+    alignItems: 'center'
   },
   buttonGroup: {
     marginLeft: 'auto'
   },
   addIcon: {
     size: 'xs',
-    variantColor: 'blue'
+    variantColor: 'cyan'
   },
   deleteIcon: {
     size: 'xs',
-    variantColor: 'red',
+    variantColor: 'pink',
     margin: 'auto'
   },
   clearIcon: {
     size: 'xs',
-    variantColor: 'red'
+    variantColor: 'pink'
   },
   toggleCollapseButton: {
     size: 'xs',
@@ -76,7 +80,7 @@ export const ArrayField: React.FC<Props> = ({ name, field }) => {
 
   const { isOpen, onOpen, onToggle } = useDisclosure(true);
 
-  const arrayStyles = useStyles<ArrayStyles>('arrayField');
+  const arrayStyles = useStyles<ArrayStyles>('arrayField', styles);
 
   const errorMessage = useErrorMessage(name, field.label);
 
@@ -94,10 +98,10 @@ export const ArrayField: React.FC<Props> = ({ name, field }) => {
   };
 
   return (
-    <FormControl isRequired={isRequired} isInvalid={!!errorMessage} {...styles.control}>
+    <FormControl isRequired={isRequired} isInvalid={!!errorMessage} {...arrayStyles.control}>
       <Flex {...arrayStyles.toolbar}>
         {!!label && (
-          <FormLabel {...styles.label}>
+          <FormLabel htmlFor={name} {...arrayStyles.label}>
             {label} <span className="array-label-item-count" style={{ fontWeight: 400 }}>({fields.length})</span>
           </FormLabel>
         )}
@@ -115,7 +119,7 @@ export const ArrayField: React.FC<Props> = ({ name, field }) => {
         </ButtonGroup>
       </Flex>
       <Collapse isOpen={isOpen}>
-        <Stack spacing={arrayStyles.spacing}>
+        <Stack {...arrayStyles.listWrapper}>
           {fields.map((item, i) => (
             <Box key={`${name}-listitem-${i}`} {...arrayStyles.itemWrapper}>
               {renderField([`${name}[${i}]`, listItemField], components, item.id, item.id)}
@@ -138,7 +142,7 @@ const components = {
   number: TextField,
   switch: TextField,
   input: TextField,
-  object: TextField,
+  object: ObjectField,
   array: ArrayField,
   conditional: TextField
 };

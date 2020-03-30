@@ -11,11 +11,13 @@ export default {
   output: [
     {
       file: pkg.main,
-      format: 'cjs'
+      format: 'cjs',
+      sourcemap: true
     },
     {
       file: pkg.module,
-      format: 'es'
+      format: 'es',
+      sourcemap: true
     },
   ],
   plugins: [
@@ -25,11 +27,17 @@ export default {
     }),
     typescript({
       clean: true,
-      exclude: ['**/*.test.ts']
+      exclude: [
+        '**/*.test.tsx', 
+        'setupTests.tsx'
+      ]
     }),
     commonjs({
       include: ['node_modules/**'],
-      exclude: ['**/*.stories.js', '**/*.test.ts'],
+      exclude: [
+        '**/*.stories.js', 
+        '**/*.test.tsx', 
+      ],
       namedExports: {
         'node_modules/react/react.js': [
           'Children',

@@ -22,16 +22,13 @@
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "esModuleInterop": true
   },
   "include": [
     "src"
   ],
   "exclude": [
     "node_modules",
-    "dist",
-    ".storybook",
-    "examples",
-    "**/*.test.ts"
-  ],
-  "esModuleInterop": true
+    "setupTests.tsx"
+  ]
 }

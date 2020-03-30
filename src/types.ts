@@ -7,6 +7,7 @@ import {
   ButtonGroupProps,
   FlexProps,
   ButtonProps,
+  StackProps,
 } from "@chakra-ui/core";
 import { FormLabelProps } from "@chakra-ui/core/dist/FormLabel";
 import { FC } from "react";
@@ -52,6 +53,15 @@ export interface ArrayFieldProps extends Field {
   listItemField: Field;
 }
 
+export interface ObjectFieldProps extends Field {
+  fieldType: 'object';
+  label?: string;
+  helperText?: string;
+  isRequired?: boolean;
+  isCollapsable?: boolean;
+  fields: Record<string, Field>
+}
+
 export interface TextFieldProps extends Input {
   inputType: "text" | "text_area";
   htmlInputType?: string;
@@ -74,6 +84,7 @@ export interface FormStyles {
   };
   arrayField?: ChakraStyle<ArrayStyles>;
   textField?: ChakraStyle<FieldStyles>;
+  objectField?: ChakraStyle<ObjectStyles>
 }
 
 export interface FieldStyles {
@@ -91,11 +102,16 @@ interface Collapsable {
 }
 
 export interface ArrayStyles extends Omit<FieldStyles, "input">, Collapsable {
-  spacing?: number | string;
   buttonGroup?: ButtonGroupProps;
   addIcon?: Partial<ChakraStyle<IconButtonProps>>;
   deleteIcon?: Partial<ChakraStyle<IconButtonProps>>;
   clearIcon?: Partial<ChakraStyle<IconButtonProps>>;
+  listWrapper?: Partial<ChakraStyle<StackProps>>
   itemWrapper?: BoxProps;
   itemWrapperButtonBox?: BoxProps;
+}
+
+export interface ObjectStyles extends Omit<FieldStyles, 'input'>, Collapsable {
+  spacing?: number | string
+  objectWrapper?: BoxProps;
 }

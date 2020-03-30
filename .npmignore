@@ -1,6 +1,6 @@
-node_modules
-.storybook
+node_modules/
+.storybook/
 *.stories.js
-stories
-docs
+stories/
+docs/
 .env
