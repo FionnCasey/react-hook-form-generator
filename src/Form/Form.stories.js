@@ -29,24 +29,24 @@ const basicFormSchema = {
   },
   objectField: {
     fieldType: "object",
-    label: 'Person',
+    label: "Person",
     isCollapsable: true,
-    helperText: 'This is an object field',
+    helperText: "This is an object field",
     fields: {
       firstName: {
         fieldType: "input",
         inputType: "text",
         label: "First Name",
         placeholder: "First Name",
-        helperText: 'Helper text'
+        helperText: "Helper text",
       },
       lastName: {
         fieldType: "input",
         inputType: "text",
         label: "Last Name",
-        placeholder: "Last Name"
-      }
-    }
+        placeholder: "Last Name",
+      },
+    },
   },
 };
 
@@ -60,8 +60,8 @@ export const BasicForm = () => (
         name: "hello",
         numbers: ["bing"],
         objectField: {
-          firstName: 'Fionn'
-        }
+          firstName: "Fionn",
+        },
       },
     }}
   />

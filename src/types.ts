@@ -54,12 +54,12 @@ export interface ArrayFieldProps extends Field {
 }
 
 export interface ObjectFieldProps extends Field {
-  fieldType: 'object';
+  fieldType: "object";
   label?: string;
   helperText?: string;
   isRequired?: boolean;
   isCollapsable?: boolean;
-  fields: Record<string, Field>
+  fields: Record<string, Field>;
 }
 
 export interface TextFieldProps extends Input {
@@ -84,7 +84,7 @@ export interface FormStyles {
   };
   arrayField?: ChakraStyle<ArrayStyles>;
   textField?: ChakraStyle<FieldStyles>;
-  objectField?: ChakraStyle<ObjectStyles>
+  objectField?: ChakraStyle<ObjectStyles>;
 }
 
 export interface FieldStyles {
@@ -106,12 +106,12 @@ export interface ArrayStyles extends Omit<FieldStyles, "input">, Collapsable {
   addIcon?: Partial<ChakraStyle<IconButtonProps>>;
   deleteIcon?: Partial<ChakraStyle<IconButtonProps>>;
   clearIcon?: Partial<ChakraStyle<IconButtonProps>>;
-  listWrapper?: Partial<ChakraStyle<StackProps>>
+  listWrapper?: Partial<ChakraStyle<StackProps>>;
   itemWrapper?: BoxProps;
   itemWrapperButtonBox?: BoxProps;
 }
 
-export interface ObjectStyles extends Omit<FieldStyles, 'input'>, Collapsable {
-  spacing?: number | string
+export interface ObjectStyles extends Omit<FieldStyles, "input">, Collapsable {
+  spacing?: number | string;
   objectWrapper?: BoxProps;
 }
