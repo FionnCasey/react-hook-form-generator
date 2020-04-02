@@ -7,7 +7,7 @@ import { FormControl, FormLabel } from '@chakra-ui/core';
 import { Form } from '..';
 
 export default {
-  title: 'Custom Fields',
+  title: 'Custom Fields'
 };
 
 const ReactSelectField = ({ name, label, placeholder, options }) => {
@@ -43,10 +43,10 @@ export const ReactSelect = () => {
             options: [
               { label: 'Option 1', value: 'Option 1' },
               { label: 'Option 2', value: 'Option 2' },
-              { label: 'Option 3', value: 'Option 3' },
-            ],
-          },
-        },
+              { label: 'Option 3', value: 'Option 3' }
+            ]
+          }
+        }
       }}
     />
   );

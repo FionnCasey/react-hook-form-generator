@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { Form } from '../Form';
 
 export default {
-  title: 'Form',
+  title: 'Form'
 };
 
 const basicFormSchema = {
@@ -12,7 +12,7 @@ const basicFormSchema = {
     fieldType: 'input',
     inputType: 'text',
     label: 'Name',
-    placeholder: 'Name',
+    placeholder: 'Name'
   },
   numbers: {
     fieldType: 'array',
@@ -28,13 +28,13 @@ const basicFormSchema = {
       inputType: 'number',
       label: 'Number',
       placeholder: 'Number',
-      isRequired: true,
-    },
+      isRequired: true
+    }
   },
   switch: {
     fieldType: 'input',
     inputType: 'switch',
-    label: 'Switch Field',
+    label: 'Switch Field'
   },
   objectField: {
     fieldType: 'object',
@@ -47,16 +47,16 @@ const basicFormSchema = {
         inputType: 'text',
         label: 'First Name',
         placeholder: 'First Name',
-        helperText: 'Helper text',
+        helperText: 'Helper text'
       },
       lastName: {
         fieldType: 'input',
         inputType: 'text',
         label: 'Last Name',
-        placeholder: 'Last Name',
-      },
-    },
-  },
+        placeholder: 'Last Name'
+      }
+    }
+  }
 };
 
 export const BasicForm = () => (
@@ -81,9 +81,9 @@ export const BasicForm = () => (
         name: 'hello',
         numbers: [100],
         objectField: {
-          firstName: 'Fionn',
-        },
-      },
+          firstName: 'Fionn'
+        }
+      }
     }}
   />
 );

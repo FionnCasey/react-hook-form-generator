@@ -8,7 +8,7 @@ import {
   FlexProps,
   ButtonProps,
   StackProps,
-  SwitchProps,
+  SwitchProps
 } from '@chakra-ui/core';
 import { FormLabelProps } from '@chakra-ui/core/dist/FormLabel';
 import { FC } from 'react';

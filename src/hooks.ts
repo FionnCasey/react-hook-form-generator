@@ -11,7 +11,7 @@ export const useStyles = <T extends FieldStyles>(type: keyof FormStyles, styles?
   const styleCtx = useContext(StylesCtx);
 
   return useMemo(() => {
-    return !!styles ? merge(styleCtx[type], styles) : styleCtx[type] as T;
+    return !!styles ? merge(styleCtx[type], styles) : (styleCtx[type] as T);
   }, [type, styleCtx, styles]);
 };
 
