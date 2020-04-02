@@ -12,18 +12,16 @@ import {
   Collapse
 } from '@chakra-ui/core';
 
-import { ObjectFieldProps, ObjectStyles, FormStyles } from '../types';
+import { ObjectFieldProps, ObjectStyles } from '../types';
 import { renderField } from '../utils';
 import { useErrorMessage, useStyles } from '../hooks';
-import { TextField } from '../TextField';
-import { ArrayField } from '../ArrayField';
 
 interface Props {
   name: string;
   field: ObjectFieldProps;
 }
 
-export const objectFieldStyles: FormStyles['objectField'] = {
+export const objectFieldStyles: ObjectStyles = {
   spacing: 4,
   label: {
     padding: 0
@@ -75,24 +73,13 @@ export const ObjectField: React.FC<Props> = ({ name, field }) => {
         <Stack spacing={objectStyles.spacing} {...objectStyles.objectWrapper}>
           {Object.entries(field.fields).map(([fieldName, objectField]) => (
             <Box key={`${name}-${fieldName}`}>
-              {renderField([`${name}.${fieldName}`, objectField], components)}
+              {renderField([`${name}.${fieldName}`, objectField])}
             </Box>
           ))}
         </Stack>
       </Collapse>
       {!!helperText && <FormHelperText {...objectStyles.helperText}>{helperText}</FormHelperText>}
-      {!!errorMessage && <FormErrorMessage {...objectStyles.errorMessage}>{errorMessage}</FormErrorMessage>}
+      <FormErrorMessage {...objectStyles.errorMessage}>{errorMessage}</FormErrorMessage>
     </FormControl>
   );
-};
-
-const components = {
-  text: TextField,
-  text_area: TextField,
-  number: TextField,
-  switch: TextField,
-  input: TextField,
-  object: ObjectField,
-  array: ArrayField,
-  conditional: TextField
 };

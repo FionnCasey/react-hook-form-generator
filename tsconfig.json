@@ -9,7 +9,6 @@
       "es2016",
       "es2017"
     ],
-    "sourceMap": true,
     "allowJs": false,
     "jsx": "react",
     "declaration": true,
@@ -29,6 +28,6 @@
   ],
   "exclude": [
     "node_modules",
-    "setupTests.tsx"
+    "src/__tests__"
   ]
 }

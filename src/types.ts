@@ -8,19 +8,20 @@ import {
   FlexProps,
   ButtonProps,
   StackProps,
-} from "@chakra-ui/core";
-import { FormLabelProps } from "@chakra-ui/core/dist/FormLabel";
-import { FC } from "react";
+  SwitchProps,
+} from '@chakra-ui/core';
+import { FormLabelProps } from '@chakra-ui/core/dist/FormLabel';
+import { FC } from 'react';
 
-export type FieldType = "input" | "object" | "array" | "conditional" | "custom";
+export type FieldType = 'input' | 'object' | 'array' | 'conditional' | 'custom';
 
-export type InputType = "text" | "text_area" | "number" | "switch";
+export type InputType = 'text' | 'text_area' | 'number' | 'switch';
 
 export type Schema = Record<string, Field>;
 
 export type StyleTypes = FieldStyles | ArrayStyles;
 
-export type ChakraStyle<T> = Omit<T, "children" | "onClick">;
+export type ChakraStyle<T> = Omit<T, 'children' | 'onClick'>;
 
 export interface FieldProps {
   id?: string;
@@ -33,19 +34,19 @@ export interface Field {
   styles?: FieldStyles;
 }
 
-export interface CustomField extends Omit<Field, "styles"> {
-  fieldType: "custom";
-  component: FC<Record<string, any>>;
+export interface CustomField extends Omit<Field, 'styles'> {
+  fieldType: 'custom';
+  component: FC<any>;
   props?: Record<string, any>;
 }
 
 export interface Input extends Field {
-  fieldType: "input";
+  fieldType: 'input';
   inputType: InputType;
 }
 
 export interface ArrayFieldProps extends Field {
-  fieldType: "array";
+  fieldType: 'array';
   label?: string;
   helperText?: string;
   isRequired?: boolean;
@@ -54,7 +55,7 @@ export interface ArrayFieldProps extends Field {
 }
 
 export interface ObjectFieldProps extends Field {
-  fieldType: "object";
+  fieldType: 'object';
   label?: string;
   helperText?: string;
   isRequired?: boolean;
@@ -63,7 +64,7 @@ export interface ObjectFieldProps extends Field {
 }
 
 export interface TextFieldProps extends Input {
-  inputType: "text" | "text_area";
+  inputType: 'text' | 'text_area';
   htmlInputType?: string;
   label?: string;
   placeholder?: string;
@@ -73,22 +74,31 @@ export interface TextFieldProps extends Input {
   rightInputAddon?: InputAddonProps;
 }
 
+export interface NumberFieldProps extends Input {
+  inputType: 'number';
+  label?: string;
+  placeholder?: string;
+  helperText?: string;
+  isRequired?: boolean;
+}
+
 export interface FormStyles {
   form?: {
     title?: HeadingProps;
-    container?: Omit<BoxProps, "as" | "onSubmit">;
+    container?: Omit<BoxProps, 'as' | 'onSubmit'>;
     spacing?: number | string;
     buttonGroup?: ButtonGroupProps;
     resetButton?: ChakraStyle<ButtonProps>;
     submitButton?: ChakraStyle<ButtonProps>;
   };
-  arrayField?: ChakraStyle<ArrayStyles>;
-  textField?: ChakraStyle<FieldStyles>;
-  objectField?: ChakraStyle<ObjectStyles>;
+  arrayField?: ArrayStyles;
+  textField?: FieldStyles;
+  numberField?: FieldStyles;
+  objectField?: ObjectStyles;
+  switchField?: SwitchStyles;
 }
 
 export interface FieldStyles {
-  override?: boolean;
   label?: ChakraStyle<FormLabelProps>;
   input?: InputProps<HTMLInputElement>;
   control?: BoxProps;
@@ -101,7 +111,7 @@ interface Collapsable {
   toggleCollapseButton?: Partial<ChakraStyle<IconButtonProps>>;
 }
 
-export interface ArrayStyles extends Omit<FieldStyles, "input">, Collapsable {
+export interface ArrayStyles extends Omit<FieldStyles, 'input'>, Collapsable {
   buttonGroup?: ButtonGroupProps;
   addIcon?: Partial<ChakraStyle<IconButtonProps>>;
   deleteIcon?: Partial<ChakraStyle<IconButtonProps>>;
@@ -111,7 +121,18 @@ export interface ArrayStyles extends Omit<FieldStyles, "input">, Collapsable {
   itemWrapperButtonBox?: BoxProps;
 }
 
-export interface ObjectStyles extends Omit<FieldStyles, "input">, Collapsable {
+export interface ObjectStyles extends Omit<FieldStyles, 'input'>, Collapsable {
   spacing?: number | string;
   objectWrapper?: BoxProps;
+}
+
+export interface SwitchStyles extends Omit<FieldStyles, 'input'> {
+  switch?: SwitchProps;
+}
+
+export interface SwitchFieldProps extends Input {
+  inputType: 'switch';
+  label?: string;
+  helperText?: string;
+  isRequired?: boolean;
 }

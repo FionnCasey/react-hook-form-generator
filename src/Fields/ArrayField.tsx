@@ -14,18 +14,16 @@ import {
 } from '@chakra-ui/core';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 
-import { ArrayFieldProps, ArrayStyles, FormStyles } from '../types';
+import { ArrayFieldProps, ArrayStyles } from '../types';
 import { renderField } from '../utils';
 import { useStyles, useErrorMessage } from '../hooks';
-import { TextField } from '../TextField';
-import { ObjectField } from '../ObjectField';
 
 interface Props {
   name: string;
   field: ArrayFieldProps;
 }
 
-export const arrayFieldStyles: FormStyles['arrayField'] = {
+export const arrayFieldStyles: ArrayStyles = {
   listWrapper: {
     spacing: 4,
     marginTop: 2
@@ -122,7 +120,7 @@ export const ArrayField: React.FC<Props> = ({ name, field }) => {
         <Stack {...arrayStyles.listWrapper}>
           {fields.map((item, i) => (
             <Box key={`${name}-listitem-${i}`} {...arrayStyles.itemWrapper}>
-              {renderField([`${name}[${i}]`, listItemField], components, item.id, item.id)}
+              {renderField([`${name}[${i}]`, listItemField], item.id, item.id)}
               <Box {...arrayStyles.itemWrapperButtonBox}>
                 <IconButton icon="delete" aria-label="Delete item" onClick={() => tryRemove(i)} {...arrayStyles.deleteIcon} />
               </Box>
@@ -131,18 +129,7 @@ export const ArrayField: React.FC<Props> = ({ name, field }) => {
         </Stack>
       </Collapse>
       {!!helperText && <FormHelperText {...arrayStyles.helperText}>{helperText}</FormHelperText>}
-      {!!errorMessage && <FormErrorMessage {...arrayStyles.errorMessage}>{errorMessage}</FormErrorMessage>}
+      <FormErrorMessage {...arrayStyles.errorMessage}>{errorMessage}</FormErrorMessage>
     </FormControl>
   );
-};
-
-const components = {
-  text: TextField,
-  text_area: TextField,
-  number: TextField,
-  switch: TextField,
-  input: TextField,
-  object: ObjectField,
-  array: ArrayField,
-  conditional: TextField
 };

@@ -1,37 +1,26 @@
 import React, { useMemo } from 'react';
 import { Heading, Box, Stack, ButtonGroup, Button } from '@chakra-ui/core';
 import { useForm, FormContext, UseFormOptions } from 'react-hook-form';
+import merge from 'lodash.merge';
 import get from 'lodash.get';
 
-import { Schema, FormStyles } from '../types';
-import { StylesCtx } from '../hooks';
-import { renderField } from '../utils';
-import { TextField, textFieldStyles } from '../TextField';
-import { ArrayField, arrayFieldStyles } from '../ArrayField';
-import { ObjectField, objectFieldStyles } from '../ObjectField';
+import { Schema, FormStyles } from './types';
+import { StylesCtx } from './hooks';
+import { renderField } from './utils';
+import { textFieldStyles, numberFieldStyles, arrayFieldStyles, objectFieldStyles, switchFieldStyles } from './Fields';
 
-type ButtonSpec = 'submit' | 'reset' | React.FC;
+type ButtonSpec = 'submit' | 'reset';
 
 interface FormProps {
   title?: string;
   schema: Schema;
   handleSubmit: (values: any, e?: React.BaseSyntheticEvent<object, any, any>) => void;
   styles?: FormStyles;
+  mergeStyles?: boolean
   submitText?: string;
   buttons?: ButtonSpec[];
   useFormOptions?: UseFormOptions;
 }
-
-const components = {
-  text: TextField,
-  text_area: TextField,
-  number: TextField,
-  switch: TextField,
-  input: TextField,
-  object: ObjectField,
-  array: ArrayField,
-  conditional: TextField
-};
 
 export const defaultStyles: FormStyles = {
   form: {
@@ -57,7 +46,9 @@ export const defaultStyles: FormStyles = {
   },
   arrayField: arrayFieldStyles,
   objectField: objectFieldStyles,
-  textField: textFieldStyles
+  textField: textFieldStyles,
+  numberField: numberFieldStyles,
+  switchField: switchFieldStyles
 };
 
 export const Form: React.FC<FormProps> = ({
@@ -67,29 +58,27 @@ export const Form: React.FC<FormProps> = ({
   submitText,
   useFormOptions,
   styles = defaultStyles,
+  mergeStyles = true,
   buttons = ['reset', 'submit']
 }) => {
   const methods = useForm(useFormOptions);
 
-  const formStyles = useMemo(() => {
-    return get(styles, 'form', {
-      title: undefined,
-      container: undefined,
-      spacing: undefined,
-      buttonGroup: undefined,
-      resetButton: undefined,
-      submitButton: undefined
-    });
+  const styleCtxValue = useMemo(() => {
+    return mergeStyles ? merge(defaultStyles, styles) as FormStyles : styles;
   }, [styles]);
 
+  const formStyles = useMemo(() => {
+    return get(styleCtxValue, 'form', {}) as Record<string, any>;
+  }, [styleCtxValue]);
+
   return (
-    <StylesCtx.Provider value={styles}>
+    <StylesCtx.Provider value={styleCtxValue}>
       <FormContext {...methods}>
         <Box as="form" onSubmit={methods.handleSubmit(handleSubmit)} {...formStyles.container}>
           {!!title && <Heading {...formStyles.title}>{title}</Heading>}
           <Stack spacing={formStyles.spacing}>
             {Object.entries(schema).map(entry => (
-              <Box key={entry[0]}>{renderField(entry, components)}</Box>
+              <Box key={entry[0]}>{renderField(entry)}</Box>
             ))}
           </Stack>
           <ButtonGroup {...formStyles.buttonGroup}>

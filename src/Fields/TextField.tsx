@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/core';
 import { useFormContext } from 'react-hook-form';
 
-import { TextFieldProps, FieldStyles, FormStyles } from '../types';
+import { TextFieldProps, FieldStyles } from '../types';
 import { useStyles, useErrorMessage } from '../hooks';
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
   field: TextFieldProps;
 }
 
-export const textFieldStyles: FormStyles['textField'] = {};
+export const textFieldStyles: FieldStyles = {};
 
 export const TextField: React.FC<Props> = ({ id, name, field }) => {
   const { label, placeholder, htmlInputType, helperText, isRequired, leftInputAddon, rightInputAddon, styles = {} } = field;
@@ -55,7 +55,7 @@ export const TextField: React.FC<Props> = ({ id, name, field }) => {
         />
       )}
       {!!helperText && <FormHelperText {...fieldStyles.helperText}>{helperText}</FormHelperText>}
-      {!!errorMessage && <FormErrorMessage {...fieldStyles.errorMessage}>{errorMessage}</FormErrorMessage>}
+      <FormErrorMessage {...fieldStyles.errorMessage}>{errorMessage}</FormErrorMessage>
     </FormControl>
   );
 };

@@ -28,15 +28,14 @@ export default {
     typescript({
       clean: true,
       exclude: [
-        '**/*.test.tsx', 
-        'setupTests.tsx'
+        '**/__tests_/**'
       ]
     }),
     commonjs({
       include: ['node_modules/**'],
       exclude: [
-        '**/*.stories.js', 
-        '**/*.test.tsx', 
+        '**/*.stories.js',
+        '**/__tests__/**'
       ],
       namedExports: {
         'node_modules/react/react.js': [

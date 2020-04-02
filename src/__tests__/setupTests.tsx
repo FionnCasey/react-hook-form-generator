@@ -5,7 +5,7 @@ import React from 'react';
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { useForm, FormContext } from 'react-hook-form';
 
-import { StylesCtx } from './src/hooks';
+import { StylesCtx } from '../hooks';
 
 const FormProvider: React.FC = ({ children }) => {
   const methods = useForm();

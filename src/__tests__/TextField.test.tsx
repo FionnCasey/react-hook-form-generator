@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { render, screen } from '../../setupTests';
-import { TextField } from '.';
+import { render, screen } from './setupTests';
+import { TextField } from '../Fields';
 
 const field = {
   fieldType: 'input' as 'input',

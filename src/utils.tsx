@@ -1,15 +1,21 @@
 import React from 'react';
 
 import { Field, Input, CustomField, FieldProps } from './types';
+import { TextField, ArrayField, ObjectField, NumberField, SwitchField } from './Fields';
 
-type ComponentKeys = 'input' | 'object' | 'array' | 'conditional' | 'text' | 'text_area' | 'number' | 'switch';
+type ComponentKeys = 'object' | 'array' | 'conditional' | 'text' | 'text_area' | 'number' | 'switch';
 
-export const renderField = (
-  [name, field]: [string, Field],
-  components: Record<ComponentKeys, React.FC<FieldProps>>,
-  id?: string,
-  key?: string
-) => {
+const components: Record<ComponentKeys, React.FC<FieldProps>> = {
+  object: ObjectField,
+  array: ArrayField,
+  conditional: TextField,
+  text: TextField,
+  text_area: TextField,
+  number: NumberField,
+  switch: SwitchField
+};
+
+export const renderField = ([name, field]: [string, Field], id?: string, key?: string) => {
   let Component: React.FC<FieldProps> | null = null;
 
   if (field.fieldType === 'custom') {
