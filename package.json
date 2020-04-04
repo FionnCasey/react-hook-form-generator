@@ -21,7 +21,7 @@
     "size": "size-limit",
     "prepare": "npm run build && size-limit",
     "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
+    "preversion": "npm run lint && npm test",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "storybook": "start-storybook -p 6006",
