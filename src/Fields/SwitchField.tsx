@@ -13,7 +13,7 @@ interface Props {
 
 export const switchFieldStyles: SwitchStyles = {};
 
-export const SwitchField: React.FC<Props> = ({ name, field }) => {
+export const SwitchField: React.FC<Props> = ({ id, name, field }) => {
   const { label, helperText, isRequired, styles = {} } = field;
 
   const fieldStyles = useStyles<SwitchStyles>('switchField', styles);
@@ -24,8 +24,8 @@ export const SwitchField: React.FC<Props> = ({ name, field }) => {
   
   return (
     <FormControl isRequired={isRequired} isInvalid={!!errorMessage}>
-      {!!label && <FormLabel {...styles.label}>{label}</FormLabel>}
-      <Switch {...fieldStyles.switch} name={name} ref={register} />
+      {!!label && <FormLabel htmlFor={name} {...styles.label}>{label}</FormLabel>}
+      <Switch name={name} data-testid={id} ref={register} {...fieldStyles.switch} />
       {!!helperText && <FormHelperText {...fieldStyles.helperText}>{helperText}</FormHelperText>}
       <FormErrorMessage {...styles.errorMessage}>{errorMessage}</FormErrorMessage>
     </FormControl>

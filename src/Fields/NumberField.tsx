@@ -44,7 +44,7 @@ export const NumberField: React.FC<Props> = ({ id, name, field }) => {
         control={control}
         as={
           <NumberInput>
-            <NumberInputField id={id} placeholder={placeholder} {...fieldStyles.input} />
+            <NumberInputField id={id} data-testid={id} placeholder={placeholder} {...fieldStyles.input} />
             <NumberInputStepper>
               <NumberIncrementStepper />
               <NumberDecrementStepper />

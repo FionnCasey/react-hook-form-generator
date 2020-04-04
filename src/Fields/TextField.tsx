@@ -41,11 +41,22 @@ export const TextField: React.FC<Props> = ({ id, name, field }) => {
       {!!leftInputAddon || rightInputAddon ? (
         <InputGroup>
           {!!leftInputAddon && <InputLeftAddon {...leftInputAddon} />}
-          <Input id={id} key={id || `${name}-input`} name={name} ref={register} placeholder={placeholder} {...fieldStyles.input} />
+          <Input
+            id={id}
+            data-testid={id}
+            key={id || `${name}-input`}
+            name={name}
+            aria-label={name}
+            ref={register}
+            placeholder={placeholder}
+            {...fieldStyles.input}
+          />
           {!!rightInputAddon && <InputRightAddon {...rightInputAddon} />}
         </InputGroup>
       ) : (
         <Input
+          id={id}
+          data-testid={id}
           key={id || `${name}-textfield`}
           type={htmlInputType || 'text'}
           name={name}
