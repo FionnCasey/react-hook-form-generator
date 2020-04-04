@@ -12,21 +12,22 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
+      exports: 'named',
       sourcemap: true
     },
     {
       file: pkg.module,
       format: 'es',
+      exports: 'named',
       sourcemap: true
     },
   ],
   plugins: [
     external(),
-    resolve({
-      browser: true
-    }),
+    resolve(),
     typescript({
       clean: true,
+      rollupCommonJSResolveHack: true,
       exclude: [
         '**/__tests_/**'
       ]
