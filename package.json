@@ -1,6 +1,6 @@
 {
   "name": "react-hook-form-generator",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Generates React forms from schema using Chakra UI and React Hook Form",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -18,7 +18,6 @@
     "lint": "tslint -p tsconfig.json",
     "size": "size-limit",
     "prepare": "npm run build && size-limit",
-    "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint && npm test",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
