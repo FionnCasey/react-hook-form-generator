@@ -4,3 +4,4 @@ node_modules/
 stories/
 docs/
 .env
+__tests__/

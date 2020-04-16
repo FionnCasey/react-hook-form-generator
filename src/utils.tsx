@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Field, Input, CustomField, FieldProps } from './types';
+import { Field, Input, CustomFieldProps, FieldProps } from './types';
 import { TextField, ArrayField, ObjectField, NumberField, SwitchField } from './Fields';
 
 type ComponentKeys = 'object' | 'array' | 'conditional' | 'text' | 'text_area' | 'number' | 'switch';
@@ -19,7 +19,7 @@ export const renderField = ([name, field]: [string, Field], id?: string, key?: s
   let Component: React.FC<FieldProps> | null = null;
 
   if (field.fieldType === 'custom') {
-    const customField = field as CustomField;
+    const customField = field as CustomFieldProps;
     return <customField.component id={id} key={key || id || name} name={name} {...customField.props} />;
   }
 

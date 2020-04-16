@@ -34,7 +34,7 @@ export interface Field {
   styles?: FieldStyles;
 }
 
-export interface CustomField extends Omit<Field, 'styles'> {
+export interface CustomFieldProps extends Omit<Field, 'styles'> {
   fieldType: 'custom';
   component: FC<any>;
   props?: Record<string, any>;
