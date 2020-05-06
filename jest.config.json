@@ -1,8 +1,0 @@
-{
-  "transform": {
-    "^.+\\.(t|j)sx?$": "ts-jest"
-  },
-  "testRegex": "src/__tests__/.*\\.test\\.tsx$",
-  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
-  "setupFilesAfterEnv": ["./src/__tests__/setupTests.tsx"]
-}

@@ -1,90 +1,74 @@
 {
-  "name": "react-hook-form-generator",
-  "version": "0.1.8",
-  "description": "Generates React forms from schema using Chakra UI and React Hook Form",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/types.d.ts",
-  "size-limit": [
-    {
-      "path": "dist/*.js",
-      "limit": "10 KB"
-    }
-  ],
-  "scripts": {
-    "test": "jest --config jest.config.json",
-    "build": "rollup -c",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
-    "size": "size-limit",
-    "prepare": "npm run build && size-limit",
-    "preversion": "npm run lint && npm test",
-    "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -c .storybook -o docs"
-  },
-  "keywords": [
-    "react",
-    "react-form",
-    "form-generator",
-    "form-schema"
-  ],
-  "author": "Fionn Casey",
+  "version": "0.1.0",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FionnCasey/react-hook-form-generator.git"
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
   },
-  "bugs": {
-    "url": "https://github.com/FionnCasey/react-hook-form-generator/issues"
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\"",
+    "prepare": "tsdx build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
-  "homepage": "https://github.com/FionnCasey/react-hook-form-generator#readme",
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "@chakra-ui/core": "^0.6.1",
-    "react-hook-form": "^5.1.3"
+    "react": ">=16",
+    "react-hook-form": "^5.4.2",
+    "@chakra-ui/core": "^0.7.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format && npm run lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "react-hook-form-generator",
+  "author": "Fionn Casey",
+  "module": "dist/react-hook-form-generator.esm.js",
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "@chakra-ui/core": "^0.6.1",
+    "@chakra-ui/core": "^0.7.0",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
-    "@rollup/plugin-commonjs": "^11.0.2",
-    "@rollup/plugin-node-resolve": "^7.1.1",
-    "@size-limit/preset-small-lib": "^4.4.2",
-    "@storybook/addon-actions": "^5.3.17",
-    "@storybook/addon-links": "^5.3.17",
-    "@storybook/addons": "^5.3.17",
-    "@storybook/react": "^5.3.17",
-    "@testing-library/jest-dom": "^5.3.0",
-    "@testing-library/react": "^10.0.1",
-    "@types/lodash.get": "^4.4.6",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-docs": "^5.3.18",
+    "@storybook/addon-info": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^10.0.4",
     "@types/lodash.merge": "^4.6.6",
-    "@types/react": "^16.9.25",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "babel-loader": "^8.1.0",
-    "babel-preset-react-app": "^9.1.2",
     "emotion-theming": "^10.0.27",
-    "jest": "^25.2.3",
-    "prettier": "^2.0.2",
+    "husky": "^4.2.5",
     "react": "^16.13.1",
+    "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.13.1",
-    "react-hook-form": "^5.1.3",
-    "react-select": "^3.1.0",
-    "rollup": "^2.2.0",
-    "rollup-plugin-peer-deps-external": "^2.2.2",
-    "rollup-plugin-sass": "^1.2.2",
-    "rollup-plugin-terser": "^5.3.0",
-    "rollup-plugin-typescript2": "^0.26.0",
-    "size-limit": "^4.4.2",
-    "ts-jest": "^25.2.1",
-    "tslint": "^6.1.0",
-    "tslint-config-prettier": "^1.18.0",
+    "react-hook-form": "^5.4.2",
+    "react-is": "^16.13.1",
+    "ts-loader": "^7.0.0",
+    "tsdx": "^0.13.2",
+    "tslib": "^1.11.1",
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "lodash.get": "^4.4.2",
     "lodash.merge": "^4.6.2"
   }
 }

@@ -1,7 +1,0 @@
-node_modules/
-.storybook/
-*.stories.js
-stories/
-docs/
-.env
-__tests__/

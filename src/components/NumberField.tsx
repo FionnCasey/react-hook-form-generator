@@ -8,32 +8,34 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  FormErrorMessage
+  FormErrorMessage,
 } from '@chakra-ui/core';
 import { useFormContext, Controller } from 'react-hook-form';
 
-import { NumberFieldProps, FieldStyles } from '../types';
-import { useStyles, useErrorMessage } from '../hooks';
+import { FieldProps, FieldStyles, NumberFieldSchema } from '../types';
+import { useErrorMessage } from '../hooks/useErrorMessage';
+import { useStyles } from '../hooks/useStyles';
 
-interface Props {
-  id?: string;
-  name: string;
-  field: NumberFieldProps;
-}
-
-export const numberFieldStyles: FieldStyles = {};
-
-export const NumberField: React.FC<Props> = ({ id, name, field }) => {
+export const NumberField: React.FC<FieldProps<NumberFieldSchema>> = ({
+  id,
+  name,
+  field,
+}) => {
   const { label, placeholder, helperText, isRequired, styles = {} } = field;
 
   const fieldStyles = useStyles<FieldStyles>('numberField', styles);
 
   const { control } = useFormContext();
 
-  const errorMessage = useErrorMessage(name, field.label);
+  const errorMessage = useErrorMessage(name, label);
 
   return (
-    <FormControl key={name} isRequired={isRequired} isInvalid={!!errorMessage} {...fieldStyles.control}>
+    <FormControl
+      key={`${name}-control`}
+      isRequired={isRequired}
+      isInvalid={!!errorMessage}
+      {...fieldStyles.control}
+    >
       {!!label && (
         <FormLabel htmlFor={name} {...fieldStyles.errorMessage}>
           {label}
@@ -44,7 +46,12 @@ export const NumberField: React.FC<Props> = ({ id, name, field }) => {
         control={control}
         as={
           <NumberInput>
-            <NumberInputField id={id} data-testid={id} placeholder={placeholder} {...fieldStyles.input} />
+            <NumberInputField
+              id={id}
+              data-testid={id}
+              placeholder={placeholder}
+              {...fieldStyles.input}
+            />
             <NumberInputStepper>
               <NumberIncrementStepper />
               <NumberDecrementStepper />
@@ -52,8 +59,14 @@ export const NumberField: React.FC<Props> = ({ id, name, field }) => {
           </NumberInput>
         }
       />
-      {!!helperText && <FormHelperText {...fieldStyles.helperText}>{helperText}</FormHelperText>}
-      <FormErrorMessage {...fieldStyles.errorMessage}>{errorMessage}</FormErrorMessage>
+      {!!helperText && (
+        <FormHelperText {...fieldStyles.helperText}>
+          {helperText}
+        </FormHelperText>
+      )}
+      <FormErrorMessage {...fieldStyles.errorMessage}>
+        {errorMessage}
+      </FormErrorMessage>
     </FormControl>
   );
 };
