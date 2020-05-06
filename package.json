@@ -27,7 +27,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format tsdx lint"
+      "pre-commit": "npm run format && npm run lint"
     }
   },
   "prettier": {

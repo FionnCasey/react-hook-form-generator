@@ -13,5 +13,5 @@ export const useErrorMessage = (name: string, label?: string) => {
 
     if (message) return message.replace(name, label || name);
     return 'Field validation failed';
-  }, [errors, name]);
+  }, [errors, name, label]);
 };
