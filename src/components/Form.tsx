@@ -7,7 +7,12 @@ import { FormStyles, Field } from '../types';
 import { StyleCtx } from '../hooks/useStyles';
 import { TextField } from './TextField';
 import { NumberField } from './NumberField';
-import { ArrayField, arrayFieldStyles, ObjectField, objectFieldStyles } from './Containers';
+import {
+  ArrayField,
+  arrayFieldStyles,
+  ObjectField,
+  objectFieldStyles,
+} from './Containers';
 import { SwitchField } from './SwitchField';
 import { CheckboxField, checkboxFieldStyles } from './CheckboxField';
 import { SelectField } from './SelectField';

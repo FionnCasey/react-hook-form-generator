@@ -16,8 +16,8 @@ import { useStyles } from '../hooks/useStyles';
 export const checkboxFieldStyles: CheckboxFieldStyles = {
   checkboxGroup: {
     isInline: true,
-    spacing: 4
-  }
+    spacing: 4,
+  },
 };
 
 export const CheckboxField: FC<FieldProps<CheckboxFieldSchema>> = ({
