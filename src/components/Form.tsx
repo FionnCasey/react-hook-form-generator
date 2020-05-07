@@ -7,8 +7,10 @@ import { FormStyles, Field } from '../types';
 import { StyleCtx } from '../hooks/useStyles';
 import { TextField } from './TextField';
 import { NumberField } from './NumberField';
-import { ArrayField, arrayFieldStyles } from './ArrayField';
-import { ObjectField, objectFieldStyles } from './ObjectField';
+import { ArrayField, arrayFieldStyles, ObjectField, objectFieldStyles } from './Containers';
+import { SwitchField } from './SwitchField';
+import { CheckboxField, checkboxFieldStyles } from './CheckboxField';
+import { SelectField } from './SelectField';
 
 export interface FormProps {
   title?: string;
@@ -28,7 +30,7 @@ const defaultStyles: FormStyles = {
       size: 'lg',
       marginBottom: 4,
     },
-    fieldSpacing: 4,
+    fieldSpacing: 6,
     buttonGroup: {
       marginTop: 4,
     },
@@ -41,6 +43,7 @@ const defaultStyles: FormStyles = {
   },
   arrayField: arrayFieldStyles,
   objectField: objectFieldStyles,
+  checkboxField: checkboxFieldStyles,
 };
 
 const renderField = ([name, field]: [string, Field]) => {
@@ -62,6 +65,26 @@ const renderField = ([name, field]: [string, Field]) => {
     case 'object':
       Component = ObjectField;
       break;
+
+    case 'switch':
+      Component = SwitchField;
+      break;
+
+    case 'checkbox':
+      Component = CheckboxField;
+      break;
+
+    case 'select':
+      Component = SelectField;
+      break;
+
+    case 'custom':
+      Component = field.component;
+      return (
+        <Box key={`${name}-container`}>
+          <Component name={name} field={field} {...field.props} />
+        </Box>
+      );
 
     default:
       break;

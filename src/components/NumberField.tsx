@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useMemo } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -16,20 +16,33 @@ import { FieldProps, FieldStyles, NumberFieldSchema } from '../types';
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
 
-export const NumberField: React.FC<FieldProps<NumberFieldSchema>> = ({
+export const NumberField: FC<FieldProps<NumberFieldSchema>> = ({
   id,
   name,
   field,
 }) => {
-  const { label, placeholder, helperText, isRequired, styles = {} } = field;
+  const {
+    label,
+    placeholder,
+    helperText,
+    isRequired,
+    shouldDisplay,
+    styles = {},
+  } = field;
 
   const fieldStyles = useStyles<FieldStyles>('numberField', styles);
 
-  const { control } = useFormContext();
+  const { control, watch } = useFormContext();
+
+  const values = watch({ nest: true });
 
   const errorMessage = useErrorMessage(name, label);
 
-  return (
+  const isVisible = useMemo(() => {
+    return shouldDisplay ? shouldDisplay(values) : true;
+  }, [values, shouldDisplay]);
+
+  return isVisible ? (
     <FormControl
       key={`${name}-control`}
       isRequired={isRequired}
@@ -68,5 +81,5 @@ export const NumberField: React.FC<FieldProps<NumberFieldSchema>> = ({
         {errorMessage}
       </FormErrorMessage>
     </FormControl>
-  );
+  ) : null;
 };

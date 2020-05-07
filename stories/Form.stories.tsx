@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import { Form } from '../.';
+import { Form } from '../dist';
 
 export default {
   title: 'Form',
@@ -11,16 +11,56 @@ export const Default = () => (
   <Form
     title="Default Styles"
     schema={{
-      name: {
+      text: {
         type: 'text',
         label: 'Name',
         placeholder: 'Name',
-        isRequired: true
+        isRequired: true,
       },
-      age: {
+      number: {
         type: 'number',
         label: 'Age',
         placeholder: 'Age',
+      },
+      select: {
+        type: 'select',
+        label: 'Gender',
+        options: [
+          {
+            value: 'Male'
+          },
+          {
+            value: 'Female'
+          },
+          {
+            value: 'Rather not say'
+          }
+        ]
+      },
+      toggle: {
+        type: 'switch',
+        label: 'Some Toggle',
+      },
+      days: {
+        type: 'checkbox',
+        label: 'Days of the Week',
+        checkboxes: [
+          {
+            name: 'Monday',
+          },
+          {
+            name: 'Tuesday',
+          },
+          {
+            name: 'Wednesday',
+          },
+          {
+            name: 'Thursday',
+          },
+          {
+            name: 'Friday',
+          },
+        ],
       },
       address: {
         type: 'object',

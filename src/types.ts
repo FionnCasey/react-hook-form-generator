@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   FormControlProps,
   InputProps,
@@ -11,6 +12,8 @@ import {
   FlexProps,
   PseudoBoxProps,
   SwitchProps,
+  CheckboxProps,
+  SelectProps,
 } from '@chakra-ui/core';
 import { FormLabelProps } from '@chakra-ui/core/dist/FormLabel';
 
@@ -20,7 +23,11 @@ export type Field =
   | TextFieldSchema
   | NumberFieldSchema
   | ArrayFieldSchema
-  | ObjectFieldSchema;
+  | ObjectFieldSchema
+  | SwitchFieldSchema
+  | CheckboxFieldSchema
+  | SelectFieldSchema
+  | CustomFieldSchema;
 
 export interface FieldProps<T extends FieldSchema> {
   id?: string;
@@ -29,53 +36,65 @@ export interface FieldProps<T extends FieldSchema> {
 }
 
 interface FieldSchema {
-  type: 'text' | 'textArea' | 'number' | 'switch' | 'array' | 'object';
+  type: 'text' | 'textArea' | 'number' | 'switch' | 'array' | 'object' | 'checkbox' | 'select' | 'custom';
   styles?: FieldStyles;
   shouldDisplay?: (values?: any) => boolean;
 }
 
-export interface TextFieldSchema extends FieldSchema {
-  type: 'text' | 'textArea';
-  htmlInputType?: string;
+export interface CustomFieldSchema extends Pick<FieldSchema, 'type'> {
+  type: 'custom'
+  component: FC<Record<string, any>>
+  props?: Record<string, any>
+}
+
+interface FormController {
   label?: string;
   placeholder?: string;
   helperText?: string;
   isRequired?: boolean;
+}
+
+export interface TextFieldSchema extends FieldSchema, FormController {
+  type: 'text' | 'textArea';
+  htmlInputType?: string;
   leftInputAddon?: InputAddonProps;
   rightInputAddon?: InputAddonProps;
 }
 
-export interface NumberFieldSchema extends FieldSchema {
+export interface NumberFieldSchema extends FieldSchema, FormController {
   type: 'number';
-  label?: string;
-  placeholder?: string;
-  helperText?: string;
-  isRequired?: boolean;
 }
 
-export interface ArrayFieldSchema extends FieldSchema {
+export interface ArrayFieldSchema extends FieldSchema, Pick<FormController, 'label' | 'helperText' | 'isRequired'> {
   type: 'array';
-  label?: string;
-  helperText?: string;
-  isRequired?: boolean;
   isCollapsable?: boolean;
   itemField: Field;
 }
 
-export interface ObjectFieldSchema extends FieldSchema {
+export interface ObjectFieldSchema extends FieldSchema, Pick<FormController, 'label' | 'helperText' | 'isRequired'> {
   type: 'object';
-  label?: string;
-  helperText?: string;
-  isRequired?: boolean;
   isCollapsable?: boolean;
   properties: Record<string, Field>;
 }
 
-export interface SwitchFieldSchema extends FieldSchema {
+export interface SwitchFieldSchema extends FieldSchema, Pick<FormController, 'label' | 'helperText' | 'isRequired'> {
   type: 'switch';
-  label?: string;
-  helperText?: string;
-  isRequired?: boolean;
+}
+
+export interface CheckboxFieldSchema extends FieldSchema, Pick<FormController, 'label' | 'helperText' | 'isRequired'> {
+  type: 'checkbox';
+  checkboxes: {
+    name: string
+    label?: string
+  }[]
+}
+
+export interface SelectFieldSchema extends FieldSchema, Pick<FormController, 'label' | 'helperText' | 'isRequired'> {
+  type: 'select'
+  options: {
+    label?: string
+    value: string
+  }[]
 }
 
 export interface FormStyles {
@@ -93,6 +112,8 @@ export interface FormStyles {
   arrayField?: ArrayFieldStyles;
   objectField?: ObjectFieldStyles;
   switchField?: SwitchFieldStyles;
+  checkboxField?: CheckboxFieldStyles
+  selectField?: SelectFieldStyles
 }
 
 export interface FieldStyles {
@@ -105,10 +126,10 @@ export interface FieldStyles {
 
 export interface ArrayFieldStyles
   extends Pick<
-      FieldStyles,
-      'control' | 'label' | 'helperText' | 'errorMessage'
-    >,
-    CollapsableStyles {
+  FieldStyles,
+  'control' | 'label' | 'helperText' | 'errorMessage'
+  >,
+  CollapsableStyles {
   arrayContainer?: StackProps;
   itemContainer?: BoxProps;
   buttonGroup?: ButtonGroupProps;
@@ -121,10 +142,10 @@ export interface ArrayFieldStyles
 
 export interface ObjectFieldStyles
   extends Pick<
-      FieldStyles,
-      'control' | 'label' | 'helperText' | 'errorMessage'
-    >,
-    CollapsableStyles {
+  FieldStyles,
+  'control' | 'label' | 'helperText' | 'errorMessage'
+  >,
+  CollapsableStyles {
   objectContainer?: StackProps;
   propertyContainer?: BoxProps;
 }
@@ -136,8 +157,17 @@ export interface CollapsableStyles {
 
 export interface SwitchFieldStyles
   extends Pick<
-    FieldStyles,
-    'control' | 'label' | 'helperText' | 'errorMessage'
+  FieldStyles,
+  'control' | 'label' | 'helperText' | 'errorMessage'
   > {
   switch?: SwitchProps;
+}
+
+export interface CheckboxFieldStyles extends Pick<FieldStyles, 'control' | 'label' | 'helperText' | 'errorMessage'> {
+  checkboxGroup?: StackProps
+  checkbox?: CheckboxProps
+}
+
+export interface SelectFieldStyles extends Pick<FieldStyles, 'control' | 'label' | 'helperText' | 'errorMessage'> {
+  select?: SelectProps
 }

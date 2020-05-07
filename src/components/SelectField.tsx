@@ -4,15 +4,15 @@ import {
   FormLabel,
   FormHelperText,
   FormErrorMessage,
-  Switch,
+  Select,
 } from '@chakra-ui/core';
 import { useFormContext } from 'react-hook-form';
 
-import { FieldProps, SwitchFieldStyles, SwitchFieldSchema } from '../types';
+import { FieldProps, SelectFieldSchema, SelectFieldStyles } from '../types';
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
 
-export const SwitchField: FC<FieldProps<SwitchFieldSchema>> = ({
+export const SelectField: FC<FieldProps<SelectFieldSchema>> = ({
   id,
   name,
   field,
@@ -23,7 +23,7 @@ export const SwitchField: FC<FieldProps<SwitchFieldSchema>> = ({
 
   const values = watch({ nest: true });
 
-  const fieldStyles = useStyles<SwitchFieldStyles>('switchField', styles);
+  const fieldStyles = useStyles<SelectFieldStyles>('selectField', styles);
 
   const errorMessage = useErrorMessage(name, label);
 
@@ -43,12 +43,18 @@ export const SwitchField: FC<FieldProps<SwitchFieldSchema>> = ({
           {label}
         </FormLabel>
       )}
-      <Switch
+      <Select
         name={name}
         data-testid={id}
         ref={register}
-        {...fieldStyles.switch}
-      />
+        {...fieldStyles.select}
+      >
+        {field.options.map(option => (
+          <option key={option.value} value={option.value}>
+            {option.label || option.value}
+          </option>
+        ))}
+      </Select>
       {!!helperText && (
         <FormHelperText {...fieldStyles.helperText}>
           {helperText}

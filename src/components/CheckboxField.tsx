@@ -4,15 +4,23 @@ import {
   FormLabel,
   FormHelperText,
   FormErrorMessage,
-  Switch,
+  Checkbox,
+  Stack,
 } from '@chakra-ui/core';
 import { useFormContext } from 'react-hook-form';
 
-import { FieldProps, SwitchFieldStyles, SwitchFieldSchema } from '../types';
+import { FieldProps, CheckboxFieldSchema, CheckboxFieldStyles } from '../types';
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
 
-export const SwitchField: FC<FieldProps<SwitchFieldSchema>> = ({
+export const checkboxFieldStyles: CheckboxFieldStyles = {
+  checkboxGroup: {
+    isInline: true,
+    spacing: 4
+  }
+};
+
+export const CheckboxField: FC<FieldProps<CheckboxFieldSchema>> = ({
   id,
   name,
   field,
@@ -23,7 +31,7 @@ export const SwitchField: FC<FieldProps<SwitchFieldSchema>> = ({
 
   const values = watch({ nest: true });
 
-  const fieldStyles = useStyles<SwitchFieldStyles>('switchField', styles);
+  const fieldStyles = useStyles<CheckboxFieldStyles>('checkboxField', styles);
 
   const errorMessage = useErrorMessage(name, label);
 
@@ -43,12 +51,18 @@ export const SwitchField: FC<FieldProps<SwitchFieldSchema>> = ({
           {label}
         </FormLabel>
       )}
-      <Switch
-        name={name}
-        data-testid={id}
-        ref={register}
-        {...fieldStyles.switch}
-      />
+      <Stack {...fieldStyles.checkboxGroup}>
+        {field.checkboxes.map(checkbox => (
+          <Checkbox
+            key={checkbox.name}
+            name={checkbox.name}
+            ref={register}
+            data-testid={`${id}-${checkbox.name}`}
+          >
+            {checkbox.label || checkbox.name}
+          </Checkbox>
+        ))}
+      </Stack>
       {!!helperText && (
         <FormHelperText {...fieldStyles.helperText}>
           {helperText}

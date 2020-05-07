@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useMemo } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -20,11 +20,16 @@ import {
   ArrayFieldStyles,
   ArrayFieldSchema,
   Field,
+  ObjectFieldStyles,
+  ObjectFieldSchema,
 } from '../types';
 import { useErrorMessage } from '../hooks/useErrorMessage';
 import { useStyles } from '../hooks/useStyles';
 import { TextField } from './TextField';
 import { NumberField } from './NumberField';
+import { SwitchField } from './SwitchField';
+import { CheckboxField } from './CheckboxField';
+import { SelectField } from './SelectField';
 
 const renderField = ([name, field]: [string, Field], id?: string) => {
   let Component: any = null;
@@ -38,13 +43,47 @@ const renderField = ([name, field]: [string, Field], id?: string) => {
       Component = NumberField;
       break;
 
+    case 'array':
+      Component = ArrayField;
+      break;
+
+    case 'object':
+      Component = ObjectField;
+      break;
+
+    case 'switch':
+      Component = SwitchField;
+      break;
+
+    case 'checkbox':
+      Component = CheckboxField;
+      break;
+
+    case 'select':
+      Component = SelectField;
+      break;
+
+    case 'custom':
+      Component = field.component;
+      return (
+        <Box key={`${name}-container`}>
+          <Component
+            id={id}
+            data-testid={id}
+            name={name}
+            field={field}
+            {...field.props}
+          />
+        </Box>
+      );
+
     default:
       break;
   }
 
   return (
     <Box key={`${name}-container`}>
-      <Component id={id} name={name} field={field} />
+      <Component id={id} data-testid={id} name={name} field={field} />
     </Box>
   );
 };
@@ -97,7 +136,7 @@ export const arrayFieldStyles: ArrayFieldStyles = {
   },
 };
 
-export const ArrayField: React.FC<FieldProps<ArrayFieldSchema>> = ({
+export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
   name,
   field,
 }) => {
@@ -107,10 +146,13 @@ export const ArrayField: React.FC<FieldProps<ArrayFieldSchema>> = ({
     isCollapsable,
     itemField,
     helperText,
+    shouldDisplay,
     styles = {},
   } = field;
 
-  const { control } = useFormContext();
+  const { control, watch } = useFormContext();
+
+  const values = watch({ nest: true });
 
   const { fields, append, remove } = useFieldArray({ name, control });
 
@@ -133,7 +175,11 @@ export const ArrayField: React.FC<FieldProps<ArrayFieldSchema>> = ({
     }
   };
 
-  return (
+  const isVisible = useMemo(() => {
+    return shouldDisplay ? shouldDisplay(values) : true;
+  }, [values, shouldDisplay]);
+
+  return isVisible ? (
     <FormControl
       isRequired={isRequired}
       isInvalid={!!errorMessage}
@@ -195,5 +241,99 @@ export const ArrayField: React.FC<FieldProps<ArrayFieldSchema>> = ({
         {errorMessage}
       </FormErrorMessage>
     </FormControl>
-  );
+  ) : null;
+};
+
+export const objectFieldStyles: ObjectFieldStyles = {
+  objectContainer: {
+    spacing: 4,
+    borderWidth: 1,
+    borderColor: 'gray.200',
+    padding: 2,
+    borderRadius: 4,
+    marginTop: 2,
+    backgroundColor: 'gray.50',
+  },
+  label: {
+    padding: 0,
+  },
+  toolbar: {
+    alignItems: 'center',
+  },
+  collapseButton: {
+    size: 'xs',
+    marginLeft: 'auto',
+  },
+};
+
+export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
+  name,
+  field,
+}) => {
+  const {
+    label,
+    isCollapsable,
+    isRequired,
+    helperText,
+    shouldDisplay,
+    styles = {},
+  } = field;
+
+  const { watch } = useFormContext();
+
+  const values = watch({ nest: true });
+
+  const { isOpen, onToggle } = useDisclosure(true);
+
+  const objectStyles = useStyles<ObjectFieldStyles>('objectField', styles);
+
+  const errorMessage = useErrorMessage(name, field.label);
+
+  const isVisible = useMemo(() => {
+    return shouldDisplay ? shouldDisplay(values) : true;
+  }, [values, shouldDisplay]);
+
+  return isVisible ? (
+    <FormControl
+      isRequired={!!isRequired}
+      isInvalid={!!errorMessage}
+      {...objectStyles.control}
+    >
+      <Flex {...objectStyles.toolbar}>
+        {!!label && (
+          <FormLabel htmlFor={name} {...objectStyles.label}>
+            {label}
+          </FormLabel>
+        )}
+        {isCollapsable && (
+          <IconButton
+            icon={isOpen ? 'view-off' : 'view'}
+            aria-label={isOpen ? 'Hide items' : 'Show items'}
+            onClick={onToggle}
+            {...objectStyles.collapseButton}
+          />
+        )}
+      </Flex>
+      <Collapse isOpen={isOpen}>
+        <Stack {...objectStyles.objectContainer}>
+          {Object.entries(field.properties).map(([fieldName, objectField]) => (
+            <Box
+              key={`${name}-${fieldName}`}
+              {...objectStyles.propertyContainer}
+            >
+              {renderField([`${name}.${fieldName}`, objectField])}
+            </Box>
+          ))}
+        </Stack>
+      </Collapse>
+      {!!helperText && (
+        <FormHelperText {...objectStyles.helperText}>
+          {helperText}
+        </FormHelperText>
+      )}
+      <FormErrorMessage {...objectStyles.errorMessage}>
+        {errorMessage}
+      </FormErrorMessage>
+    </FormControl>
+  ) : null;
 };
