@@ -21,6 +21,7 @@ export declare var __DEV__: boolean;
 
 export type Field =
   | TextFieldSchema
+  | TextAreaFieldSchema
   | NumberFieldSchema
   | ArrayFieldSchema
   | ObjectFieldSchema
@@ -64,10 +65,14 @@ interface FormController {
 }
 
 export interface TextFieldSchema extends FieldSchema, FormController {
-  type: 'text' | 'textArea';
+  type: 'text';
   htmlInputType?: string;
   leftInputAddon?: InputAddonProps;
   rightInputAddon?: InputAddonProps;
+}
+
+export interface TextAreaFieldSchema extends FieldSchema, FormController {
+  type: 'textArea';
 }
 
 export interface NumberFieldSchema extends FieldSchema, FormController {

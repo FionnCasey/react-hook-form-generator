@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import { Form } from '../dist';
+import { Form } from '../src/components/Form';
 
 export default {
   title: 'Form',
@@ -17,6 +17,11 @@ export const Default = () => (
         placeholder: 'Name',
         isRequired: true,
       },
+      about: {
+        type: 'textArea',
+        label: 'About',
+        placeholder: 'Write something about yourself',
+      },
       number: {
         type: 'number',
         label: 'Age',
@@ -27,15 +32,15 @@ export const Default = () => (
         label: 'Gender',
         options: [
           {
-            value: 'Male'
+            value: 'Male',
           },
           {
-            value: 'Female'
+            value: 'Female',
           },
           {
-            value: 'Rather not say'
-          }
-        ]
+            value: 'Rather not say',
+          },
+        ],
       },
       toggle: {
         type: 'switch',

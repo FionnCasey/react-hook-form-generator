@@ -40,3 +40,8 @@ jobs:
         run: yarn build
         env:
           CI: true
+
+      - name: Build storybook docs
+        run: yarn run build-storybook
+        env:
+          CI: true

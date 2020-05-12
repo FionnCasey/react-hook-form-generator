@@ -6,6 +6,7 @@ import merge from 'lodash.merge';
 import { FormStyles, Field } from '../types';
 import { StyleCtx } from '../hooks/useStyles';
 import { TextField } from './TextField';
+import { TextAreaField } from './TextAreaField';
 import { NumberField } from './NumberField';
 import {
   ArrayField,
@@ -57,6 +58,10 @@ const renderField = ([name, field]: [string, Field]) => {
   switch (field.type) {
     case 'text':
       Component = TextField;
+      break;
+
+    case 'textArea':
+      Component = TextAreaField;
       break;
 
     case 'number':
