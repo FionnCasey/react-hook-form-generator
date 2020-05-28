@@ -30,6 +30,12 @@
       "pre-commit": "npm run format && npm run lint"
     }
   },
+  "keywords": [
+    "react",
+    "react-hook-form",
+    "form-generator",
+    "form-schema"
+  ],
   "prettier": {
     "printWidth": 80,
     "semi": true,
