@@ -25,7 +25,7 @@
     "react-hook-form": "^5.4.2",
     "@chakra-ui/core": "^0.7.0"
   },
-  "homepage": "https://github.com/owner/project#readme",
+  "homepage": "https://github.com/FionnCasey/react-hook-form-generator#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/FionnCasey/react-hook-form-generator.git"
