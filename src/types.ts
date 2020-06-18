@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/core';
 import { FormLabelProps } from '@chakra-ui/core/dist/FormLabel';
 
-export declare var __DEV__: boolean;
+export type Schema = Record<string, Field>;
 
 export type Field =
   | TextFieldSchema
@@ -47,7 +47,7 @@ interface FieldSchema {
     | 'checkbox'
     | 'select'
     | 'custom';
-  styles?: FieldStyles;
+  styles?: FieldStyles | ArrayFieldStyles | ObjectFieldStyles | CheckboxFieldStyles | SelectFieldStyles
   shouldDisplay?: (values?: any) => boolean;
 }
 

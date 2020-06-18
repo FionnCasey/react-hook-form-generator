@@ -3,7 +3,7 @@ import { Box, Heading, Stack, ButtonGroup, Button } from '@chakra-ui/core';
 import { useForm, FormContext, UseFormOptions } from 'react-hook-form';
 import merge from 'lodash.merge';
 
-import { FormStyles, Field } from '../types';
+import { FormStyles, Field, Schema } from '../types';
 import { StyleCtx } from '../hooks/useStyles';
 import { TextField } from './TextField';
 import { TextAreaField } from './TextAreaField';
@@ -12,7 +12,7 @@ import {
   ArrayField,
   arrayFieldStyles,
   ObjectField,
-  objectFieldStyles,
+  objectFieldStyles
 } from './Containers';
 import { SwitchField } from './SwitchField';
 import { CheckboxField, checkboxFieldStyles } from './CheckboxField';
@@ -20,7 +20,7 @@ import { SelectField } from './SelectField';
 
 export interface FormProps {
   title?: string;
-  schema: Record<string, Field>;
+  schema: Schema;
   handleSubmit: (values: any, e?: BaseSyntheticEvent) => void;
   styles?: FormStyles;
   overwriteDefaultStyles?: boolean;

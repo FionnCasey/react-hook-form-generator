@@ -1,6 +1,6 @@
 # React Hook Form Generator
 
-> A [React](https://reactjs.org/) component to quickly and easily generate forms from object schema. Built with [React Hook Form](https://react-hook-form.com/) and [Chakra UI](https://chakra-ui.com/).
+A [React](https://reactjs.org/) component to quickly and easily generate forms from object schema. Built with [React Hook Form](https://react-hook-form.com/) and [Chakra UI](https://chakra-ui.com/).
 
 ## Live Demo
 
@@ -10,7 +10,7 @@
 
 ## Installation
 
-> This package requires chakra-ui and react-hook-form as peer dependencies
+This package requires chakra-ui and react-hook-form as peer dependencies
 
 ```shell
 npm install react-hook-form-generator
@@ -66,7 +66,7 @@ const MyForm = () => {
 };
 ```
 
-> This package uses Chakra UI for default styles so you need to wrap the form in a ThemeProvider
+This package uses Chakra UI for default styles so you need to wrap the form in a ThemeProvider
 
 ```javascript
 // App.js
@@ -86,7 +86,7 @@ const App = () => (
 
 ## Styling
 
-> Chakra UI [style props](https://chakra-ui.com/style-props) can be passed in as global styles for an a group of components (e.g. all text input fields) or on an individual field basis
+Chakra UI [style props](https://chakra-ui.com/style-props) can be passed in as global styles for an a group of components (e.g. all text input fields) or on an individual field basis
 
 ```javascript
 // Global style method
@@ -123,10 +123,10 @@ const App = () => (
 />
 ```
 
-> Individual styles will be merged with global styles and take priority
+Individual styles will be merged with global styles and take priority
 
 ---
 
 ## Validation
 
-> React Hook Form [schema validation](https://www.react-hook-form.com/advanced-usage#SchemaValidation) and other methods are forwarded through the `formOptions` property on the `Form` component
+React Hook Form [schema validation](https://www.react-hook-form.com/advanced-usage#SchemaValidation) and other methods are forwarded through the `formOptions` property on the `Form` component
