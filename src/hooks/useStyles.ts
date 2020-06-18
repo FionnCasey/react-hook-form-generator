@@ -1,5 +1,4 @@
 import { useMemo, createContext, useContext } from 'react';
-import merge from 'lodash.merge';
 
 import { FormStyles, FieldStyles } from '../types';
 
@@ -13,7 +12,7 @@ export const useStyles = <T extends FieldStyles>(
 
   return useMemo(() => {
     return !!inlineStyles
-      ? merge(baseStyles[type], inlineStyles)
+      ? { ...baseStyles[type], ...inlineStyles }
       : (baseStyles[type] as T);
   }, [type, baseStyles, inlineStyles]);
 };

@@ -287,6 +287,12 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
 
   const objectStyles = useStyles<ObjectFieldStyles>('objectField', styles);
 
+  console.log({
+    label,
+    styles,
+    objectStyles
+  })
+
   const errorMessage = useErrorMessage(name, field.label);
 
   const isVisible = useMemo(() => {
