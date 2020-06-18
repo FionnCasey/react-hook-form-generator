@@ -47,7 +47,12 @@ interface FieldSchema {
     | 'checkbox'
     | 'select'
     | 'custom';
-  styles?: FieldStyles | ArrayFieldStyles | ObjectFieldStyles | CheckboxFieldStyles | SelectFieldStyles
+  styles?:
+    | FieldStyles
+    | ArrayFieldStyles
+    | ObjectFieldStyles
+    | CheckboxFieldStyles
+    | SelectFieldStyles;
   shouldDisplay?: (values?: any) => boolean;
 }
 

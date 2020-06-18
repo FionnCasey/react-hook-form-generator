@@ -12,7 +12,7 @@ import {
   ArrayField,
   arrayFieldStyles,
   ObjectField,
-  objectFieldStyles
+  objectFieldStyles,
 } from './Containers';
 import { SwitchField } from './SwitchField';
 import { CheckboxField, checkboxFieldStyles } from './CheckboxField';
