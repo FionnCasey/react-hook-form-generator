@@ -25,6 +25,15 @@ export interface FormProps {
   styles?: FormStyles;
   overwriteDefaultStyles?: boolean;
   formOptions?: UseFormOptions;
+  buttons?: {
+    reset?: {
+      text?: string;
+      hidden?: boolean;
+    };
+    submit?: {
+      text?: string;
+    };
+  };
 }
 
 const defaultStyles: FormStyles = {
@@ -113,6 +122,7 @@ export const Form: FC<FormProps> = ({
   handleSubmit,
   formOptions,
   overwriteDefaultStyles,
+  buttons,
   styles = {},
 }) => {
   const form = useForm(formOptions);
@@ -134,11 +144,13 @@ export const Form: FC<FormProps> = ({
             {Object.entries(schema).map(renderField)}
           </Stack>
           <ButtonGroup {...baseStyles.form?.buttonGroup}>
-            <Button type="reset" {...baseStyles.form?.resetButton}>
-              Reset
-            </Button>
+            {buttons?.reset?.hidden ? null : (
+              <Button type="reset" {...baseStyles.form?.resetButton}>
+                {buttons?.reset?.text || 'Reset'}
+              </Button>
+            )}
             <Button type="submit" {...baseStyles.form?.submitButton}>
-              Submit
+              {buttons?.submit?.text || 'Submit'}
             </Button>
           </ButtonGroup>
         </Box>
