@@ -30,6 +30,7 @@ import { NumberField } from './NumberField';
 import { SwitchField } from './SwitchField';
 import { CheckboxField } from './CheckboxField';
 import { SelectField } from './SelectField';
+import { TextAreaField } from './TextAreaField';
 
 const renderField = ([name, field]: [string, Field], id?: string) => {
   let Component: any = null;
@@ -37,6 +38,10 @@ const renderField = ([name, field]: [string, Field], id?: string) => {
   switch (field.type) {
     case 'text':
       Component = TextField;
+      break;
+
+    case 'textArea':
+      Component = TextAreaField;
       break;
 
     case 'number':
