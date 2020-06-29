@@ -152,7 +152,7 @@ export interface FieldStyles {
   input?: InputProps<HTMLInputElement>;
   helperText?: BoxProps;
   errorMessage?: BoxProps;
-  inputGroup?: Omit<InputGroupProps, 'children'>
+  inputGroup?: Omit<InputGroupProps, 'children'>;
 }
 
 export interface ArrayFieldStyles
