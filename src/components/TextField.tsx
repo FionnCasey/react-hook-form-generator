@@ -57,7 +57,7 @@ export const TextField: FC<FieldProps<TextFieldSchema>> = ({
         </FormLabel>
       )}
       {!!leftInputAddon || rightInputAddon ? (
-        <InputGroup>
+        <InputGroup {...fieldStyles.inputGroup}>
           {!!leftInputAddon && <InputLeftAddon {...leftInputAddon} />}
           <Input
             id={id}

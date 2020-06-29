@@ -14,6 +14,7 @@ import {
   SwitchProps,
   CheckboxProps,
   SelectProps,
+  InputGroupProps,
 } from '@chakra-ui/core';
 import { FormLabelProps } from '@chakra-ui/core/dist/FormLabel';
 
@@ -151,6 +152,7 @@ export interface FieldStyles {
   input?: InputProps<HTMLInputElement>;
   helperText?: BoxProps;
   errorMessage?: BoxProps;
+  inputGroup?: Omit<InputGroupProps, 'children'>
 }
 
 export interface ArrayFieldStyles
