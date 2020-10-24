@@ -7176,8 +7176,8 @@ markdown-escapes@^1.0.0:
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.4.tgz#c95415ef451499d7602b91095f3c8e8975f78535"
 
 markdown-to-jsx@^6.9.1, markdown-to-jsx@^6.9.3:
-  version "6.11.1"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-6.11.1.tgz#3931612cfffaa5fd6610ecf2a4055eccccb98fa8"
+  version "6.11.4"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-6.11.4.tgz#b4528b1ab668aef7fe61c1535c27e837819392c5"
   dependencies:
     prop-types "^15.6.2"
     unquote "^1.1.0"
