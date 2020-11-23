@@ -25,9 +25,9 @@ npm install react-hook-form
 ```javascript
 // MyForm.js
 import React from 'react';
-import { Form } from 'react-hook-form-generator';
+import { Field, Form } from 'react-hook-form-generator';
 
-const schema = {
+const schema: Record<string, Field> = {
   firstName: {
     type: 'text',
     label: 'First Name',
