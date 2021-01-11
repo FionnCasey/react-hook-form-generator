@@ -20,7 +20,7 @@ export const NumberField: FC<FieldProps<NumberFieldSchema>> = ({
   id,
   name,
   field,
-  defaultValue
+  defaultValue,
 }) => {
   const {
     label,
