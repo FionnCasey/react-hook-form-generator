@@ -234,10 +234,10 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
       <Collapse isOpen={isOpen}>
         <Stack {...arrayStyles.arrayContainer}>
           {fields.map((item, i) => (
-            <Box key={item.id} {...arrayStyles.itemContainer}>
+            <Box key={item?.id || `${name}[${i}].value`} {...arrayStyles.itemContainer}>
               {renderField(
                 [`${name}[${i}].value`, itemField],
-                item.id,
+                item?.id,
                 item.value
               )}
               <Box {...arrayStyles.deleteItemContainer}>
