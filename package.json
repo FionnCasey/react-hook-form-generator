@@ -22,7 +22,7 @@
   },
   "peerDependencies": {
     "react": ">=16",
-    "react-hook-form": "^5.4.2",
+    "react-hook-form": "^6.14.1",
     "@chakra-ui/core": "^0.7.0"
   },
   "homepage": "https://github.com/FionnCasey/react-hook-form-generator#readme",
@@ -53,7 +53,7 @@
   "module": "dist/react-hook-form-generator.esm.js",
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "@chakra-ui/core": "^0.7.0",
+    "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@storybook/addon-actions": "^5.3.18",
@@ -74,11 +74,11 @@
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.13.1",
-    "react-hook-form": "^5.4.2",
+    "react-hook-form": "^6.14.1",
     "react-is": "^16.13.1",
     "react-select": "^3.1.0",
     "ts-loader": "^7.0.0",
-    "tsdx": "^0.13.2",
+    "tsdx": "^0.14.1",
     "tslib": "^1.11.1",
     "typescript": "^3.8.3"
   },

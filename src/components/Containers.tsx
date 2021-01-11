@@ -32,7 +32,7 @@ import { CheckboxField } from './CheckboxField';
 import { SelectField } from './SelectField';
 import { TextAreaField } from './TextAreaField';
 
-const renderField = ([name, field]: [string, Field], id?: string) => {
+const renderField = ([name, field]: [string, Field], id?: string, defaultValue?: any) => {
   let Component: any = null;
 
   switch (field.type) {
@@ -71,12 +71,13 @@ const renderField = ([name, field]: [string, Field], id?: string) => {
     case 'custom':
       Component = field.component;
       return (
-        <Box key={`${name}-container`}>
+        <Box>
           <Component
             id={id}
             data-testid={id}
             name={name}
             field={field}
+            value={defaultValue}
             {...field.props}
           />
         </Box>
@@ -87,7 +88,7 @@ const renderField = ([name, field]: [string, Field], id?: string) => {
   }
 
   return (
-    <Box key={`${name}-container`}>
+    <Box>
       <Component id={id} data-testid={id} name={name} field={field} />
     </Box>
   );
@@ -157,7 +158,7 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
 
   const { control, watch } = useFormContext();
 
-  const values = watch({ nest: true });
+  const values = watch(name);
 
   const { fields, append, remove } = useFieldArray({ name, control });
 
@@ -223,8 +224,8 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
       <Collapse isOpen={isOpen}>
         <Stack {...arrayStyles.arrayContainer}>
           {fields.map((item, i) => (
-            <Box key={`${name}-listitem-${i}`} {...arrayStyles.itemContainer}>
-              {renderField([`${name}[${i}]`, itemField], item.id)}
+            <Box key={item.id} {...arrayStyles.itemContainer}>
+              {renderField([`${name}[${i}].value`, itemField], item.id, item.value)}
               <Box {...arrayStyles.deleteItemContainer}>
                 <IconButton
                   icon="delete"
@@ -286,7 +287,7 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
 
   const { watch } = useFormContext();
 
-  const values = watch({ nest: true });
+  const values = watch(name);
 
   const { isOpen, onToggle } = useDisclosure(true);
 

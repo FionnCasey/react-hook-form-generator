@@ -34,7 +34,7 @@ export const NumberField: FC<FieldProps<NumberFieldSchema>> = ({
 
   const { control, watch } = useFormContext();
 
-  const values = watch({ nest: true });
+  const values = watch(name);
 
   const errorMessage = useErrorMessage(name, label);
 
@@ -57,6 +57,7 @@ export const NumberField: FC<FieldProps<NumberFieldSchema>> = ({
       <Controller
         name={name}
         control={control}
+        key={id}
         as={
           <NumberInput>
             <NumberInputField

@@ -21,7 +21,7 @@ export const SelectField: FC<FieldProps<SelectFieldSchema>> = ({
 
   const { register, watch } = useFormContext();
 
-  const values = watch({ nest: true });
+  const values = watch(name);
 
   const fieldStyles = useStyles<SelectFieldStyles>('selectField', styles);
 

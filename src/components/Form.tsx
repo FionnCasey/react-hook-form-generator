@@ -1,6 +1,6 @@
 import React, { FC, BaseSyntheticEvent, useMemo } from 'react';
 import { Box, Heading, Stack, ButtonGroup, Button } from '@chakra-ui/core';
-import { useForm, FormContext, UseFormOptions } from 'react-hook-form';
+import { useForm, FormProvider, UseFormOptions } from 'react-hook-form';
 import merge from 'lodash.merge';
 
 import { FormStyles, Field, Schema } from '../types';
@@ -133,7 +133,7 @@ export const Form: FC<FormProps> = ({
 
   return (
     <StyleCtx.Provider value={baseStyles}>
-      <FormContext {...form}>
+      <FormProvider {...form}>
         <Box
           as="form"
           onSubmit={form.handleSubmit(handleSubmit)}
@@ -154,7 +154,7 @@ export const Form: FC<FormProps> = ({
             </Button>
           </ButtonGroup>
         </Box>
-      </FormContext>
+      </FormProvider>
     </StyleCtx.Provider>
   );
 };

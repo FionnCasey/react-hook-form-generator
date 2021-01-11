@@ -29,7 +29,7 @@ export const CheckboxField: FC<FieldProps<CheckboxFieldSchema>> = ({
 
   const { register, watch } = useFormContext();
 
-  const values = watch({ nest: true });
+  const values = watch(name);
 
   const fieldStyles = useStyles<CheckboxFieldStyles>('checkboxField', styles);
 

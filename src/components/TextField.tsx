@@ -19,6 +19,7 @@ export const TextField: FC<FieldProps<TextFieldSchema>> = ({
   id,
   name,
   field,
+  value,
 }) => {
   const {
     label,
@@ -38,7 +39,7 @@ export const TextField: FC<FieldProps<TextFieldSchema>> = ({
 
   const errorMessage = useErrorMessage(name, label);
 
-  const values = watch({ nest: true });
+  const values = watch(name);
 
   const isVisible = useMemo(() => {
     return shouldDisplay ? shouldDisplay(values) : true;
@@ -46,7 +47,6 @@ export const TextField: FC<FieldProps<TextFieldSchema>> = ({
 
   return isVisible ? (
     <FormControl
-      key={`${name}-control`}
       isRequired={isRequired}
       isInvalid={!!errorMessage}
       {...fieldStyles.control}
@@ -60,28 +60,26 @@ export const TextField: FC<FieldProps<TextFieldSchema>> = ({
         <InputGroup {...fieldStyles.inputGroup}>
           {!!leftInputAddon && <InputLeftAddon {...leftInputAddon} />}
           <Input
-            id={id}
             data-testid={id}
-            key={id || `${name}-input`}
             type={htmlInputType || 'text'}
             name={name}
             aria-label={name}
-            ref={register}
+            ref={register()}
             placeholder={placeholder}
+            defaultValue={value || ''}
             {...fieldStyles.input}
           />
           {!!rightInputAddon && <InputRightAddon {...rightInputAddon} />}
         </InputGroup>
       ) : (
         <Input
-          id={id}
           data-testid={id}
-          key={id || `${name}-input`}
           type={htmlInputType || 'text'}
           name={name}
           aria-label={name}
-          ref={register}
+          ref={register()}
           placeholder={placeholder}
+          defaultValue={value || ''}
           {...fieldStyles.input}
         />
       )}
