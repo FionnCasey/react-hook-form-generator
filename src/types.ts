@@ -35,7 +35,7 @@ export interface FieldProps<T extends FieldSchema> {
   id?: string;
   name: string;
   field: T;
-  value?: any;
+  defaultValue?: any;
 }
 
 interface FieldSchema {

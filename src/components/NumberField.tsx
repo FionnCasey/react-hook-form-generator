@@ -20,6 +20,7 @@ export const NumberField: FC<FieldProps<NumberFieldSchema>> = ({
   id,
   name,
   field,
+  defaultValue
 }) => {
   const {
     label,
@@ -57,7 +58,7 @@ export const NumberField: FC<FieldProps<NumberFieldSchema>> = ({
       <Controller
         name={name}
         control={control}
-        key={id}
+        defaultValue={defaultValue || 0}
         as={
           <NumberInput>
             <NumberInputField

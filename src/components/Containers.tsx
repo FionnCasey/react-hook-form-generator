@@ -81,7 +81,7 @@ const renderField = (
             data-testid={id}
             name={name}
             field={field}
-            value={defaultValue}
+            defaultValue={defaultValue}
             {...field.props}
           />
         </Box>
@@ -93,7 +93,7 @@ const renderField = (
 
   return (
     <Box>
-      <Component id={id} data-testid={id} name={name} field={field} />
+      <Component id={id} data-testid={id} name={name} field={field} defaultValue={defaultValue} />
     </Box>
   );
 };
@@ -283,6 +283,8 @@ export const objectFieldStyles: ObjectFieldStyles = {
 export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
   name,
   field,
+  id,
+  defaultValue
 }) => {
   const {
     label,
@@ -290,7 +292,7 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
     isRequired,
     helperText,
     shouldDisplay,
-    styles = {},
+    styles = {}
   } = field;
 
   const { watch } = useFormContext();
@@ -335,7 +337,7 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
               key={`${name}-${fieldName}`}
               {...objectStyles.propertyContainer}
             >
-              {renderField([`${name}.${fieldName}`, objectField])}
+              {renderField([`${name}.${fieldName}`, objectField], id, defaultValue?.[fieldName])}
             </Box>
           ))}
         </Stack>
