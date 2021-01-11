@@ -32,7 +32,11 @@ import { CheckboxField } from './CheckboxField';
 import { SelectField } from './SelectField';
 import { TextAreaField } from './TextAreaField';
 
-const renderField = ([name, field]: [string, Field], id?: string, defaultValue?: any) => {
+const renderField = (
+  [name, field]: [string, Field],
+  id?: string,
+  defaultValue?: any
+) => {
   let Component: any = null;
 
   switch (field.type) {
@@ -225,7 +229,11 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
         <Stack {...arrayStyles.arrayContainer}>
           {fields.map((item, i) => (
             <Box key={item.id} {...arrayStyles.itemContainer}>
-              {renderField([`${name}[${i}].value`, itemField], item.id, item.value)}
+              {renderField(
+                [`${name}[${i}].value`, itemField],
+                item.id,
+                item.value
+              )}
               <Box {...arrayStyles.deleteItemContainer}>
                 <IconButton
                   icon="delete"
