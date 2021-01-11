@@ -241,7 +241,7 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
               {renderField(
                 [`${name}[${i}].value`, itemField],
                 item?.id,
-                item.value
+                item?.value
               )}
               <Box {...arrayStyles.deleteItemContainer}>
                 <IconButton
