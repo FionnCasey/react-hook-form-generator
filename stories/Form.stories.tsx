@@ -11,87 +11,82 @@ export const Default = () => (
   <Form
     title="Default Styles"
     schema={{
-      text: {
-        type: 'text',
-        label: 'Name',
-        placeholder: 'Name',
-        isRequired: true,
-      },
-      about: {
-        type: 'textArea',
-        label: 'About',
-        placeholder: 'Write something about yourself',
-      },
-      number: {
-        type: 'number',
-        label: 'Age',
-        placeholder: 'Age',
-      },
-      select: {
-        type: 'select',
-        label: 'Gender',
-        options: [
-          {
-            value: 'Male',
-          },
-          {
-            value: 'Female',
-          },
-          {
-            value: 'Rather not say',
-          },
-        ],
-      },
-      toggle: {
-        type: 'switch',
-        label: 'Some Toggle',
-      },
-      days: {
-        type: 'checkbox',
-        label: 'Days of the Week',
-        checkboxes: [
-          {
-            name: 'Monday',
-          },
-          {
-            name: 'Tuesday',
-          },
-          {
-            name: 'Wednesday',
-          },
-          {
-            name: 'Thursday',
-          },
-          {
-            name: 'Friday',
-          },
-        ],
-      },
-      address: {
-        type: 'object',
-        label: 'Address',
-        properties: {
-          city: {
-            type: 'text',
-            placeholder: 'City',
-          },
-          country: {
-            type: 'text',
-            placeholder: 'Country',
-          },
-        },
-      },
-      favouriteThings: {
+      area: {
         type: 'array',
-        label: 'Favourite Things',
+        itemField: {
+          type: 'textArea',
+          label: 'Bing'
+        }
+      },
+      data: {
+        type: 'array',
+        label: 'Opening Hours',
         isCollapsable: true,
         itemField: {
-          type: 'text',
-          label: 'Thing',
-          placeholder: 'Thing',
-        },
-      },
+          type: 'object',
+          styles: {
+            objectContainer: {
+              spacing: 0,
+              border: 0,
+              padding: 0,
+              margin: '2px 0 0 0',
+              display: 'grid',
+              gridTemplateColumns: '2fr 1fr 1fr',
+              gridColumnGap: '1rem'
+            },
+            propertyContainer: {
+              width: '100%'
+            }
+          },
+          properties: {
+            dayOfWeek: {
+              type: 'select',
+              options: [
+                { value: 'Mon' }, { value: 'Tue' }, { value: 'Wed' }
+              ]
+            },
+            opens: {
+              type: 'text',
+              label: 'Opening Time',
+              isRequired: true,
+              styles: {
+                label: {
+                  fontSize: '0.85rem'
+                },
+                input: {
+                  isFullWidth: true,
+                  borderTopLeftRadius: 0,
+                  borderBottomLeftRadius: 0
+                }
+              }
+            },
+            closes: {
+              type: 'text',
+              label: 'Closing Time',
+              isRequired: true,
+              styles: {
+                control: {
+                  width: '100%'
+                },
+                label: {
+                  fontSize: '0.85rem'
+                },
+                input: {
+                  isFullWidth: true,
+                  borderTopLeftRadius: 0,
+                  borderBottomLeftRadius: 0
+                }
+              }
+            }
+          }
+        }
+      }
     }}
     handleSubmit={action('Submit')}
+    formOptions={{
+      defaultValues: {
+        area: [{ value: 'bingo' }, { value: 'bango' }]
+      }
+    }}
   />
 );

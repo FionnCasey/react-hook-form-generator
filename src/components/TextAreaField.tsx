@@ -16,6 +16,7 @@ export const TextAreaField: FC<FieldProps<TextAreaFieldSchema>> = ({
   id,
   name,
   field,
+  defaultValue
 }) => {
   const {
     label,
@@ -54,6 +55,7 @@ export const TextAreaField: FC<FieldProps<TextAreaFieldSchema>> = ({
         name={name}
         placeholder={placeholder}
         ref={register()}
+        defaultValue={defaultValue || ''}
         {...fieldStyles.input}
       />
       {!!helperText && (

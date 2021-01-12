@@ -183,15 +183,6 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
     onOpen();
   };
 
-  const tryRemove = (i: number) => {
-    try {
-      remove(i);
-    } catch (e) {
-      // console.warn(e);
-    }
-  };
-  console.log(fields);
-
   const isVisible = useMemo(() => {
     return shouldDisplay ? shouldDisplay(values) : true;
   }, [values, shouldDisplay]);
@@ -248,7 +239,7 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
                 <IconButton
                   icon="delete"
                   aria-label="Delete item"
-                  onClick={() => tryRemove(i)}
+                  onClick={() => remove(i)}
                   {...arrayStyles.deleteButton}
                 />
               </Box>
@@ -348,7 +339,7 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
               {...objectStyles.propertyContainer}
             >
               {renderField(
-                [`${name}.${fieldName}`, objectField],
+                [name.replace(/\.value$/, `.${fieldName}`), objectField],
                 id,
                 defaultValue?.[fieldName]
               )}
