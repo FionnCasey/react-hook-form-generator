@@ -318,7 +318,7 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
   const isVisible = useMemo(() => {
     return shouldDisplay ? shouldDisplay(values) : true;
   }, [values, shouldDisplay]);
- 
+
   return isVisible ? (
     <FormControl
       isRequired={!!isRequired}
