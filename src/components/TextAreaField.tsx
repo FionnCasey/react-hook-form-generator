@@ -40,7 +40,6 @@ export const TextAreaField: FC<FieldProps<TextAreaFieldSchema>> = ({
 
   return isVisible ? (
     <FormControl
-      key={`${name}-control`}
       isRequired={isRequired}
       isInvalid={!!errorMessage}
       {...fieldStyles.control}
@@ -51,11 +50,10 @@ export const TextAreaField: FC<FieldProps<TextAreaFieldSchema>> = ({
         </FormLabel>
       )}
       <Textarea
-        id={id}
         data-testid={id}
         name={name}
         placeholder={placeholder}
-        ref={register}
+        ref={register()}
         {...fieldStyles.input}
       />
       {!!helperText && (

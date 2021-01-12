@@ -190,6 +190,7 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
       // console.warn(e);
     }
   };
+  console.log(fields);
 
   const isVisible = useMemo(() => {
     return shouldDisplay ? shouldDisplay(values) : true;
@@ -240,8 +241,8 @@ export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
             >
               {renderField(
                 [`${name}[${i}].value`, itemField],
-                item?.id,
-                item?.value
+                item.id,
+                item.value
               )}
               <Box {...arrayStyles.deleteItemContainer}>
                 <IconButton
@@ -317,7 +318,7 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
   const isVisible = useMemo(() => {
     return shouldDisplay ? shouldDisplay(values) : true;
   }, [values, shouldDisplay]);
-
+ 
   return isVisible ? (
     <FormControl
       isRequired={!!isRequired}

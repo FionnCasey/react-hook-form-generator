@@ -64,7 +64,7 @@ export const TextField: FC<FieldProps<TextFieldSchema>> = ({
             type={htmlInputType || 'text'}
             name={name}
             aria-label={name}
-            ref={register}
+            ref={register()}
             placeholder={placeholder}
             defaultValue={defaultValue || ''}
             {...fieldStyles.input}
@@ -77,7 +77,7 @@ export const TextField: FC<FieldProps<TextFieldSchema>> = ({
           type={htmlInputType || 'text'}
           name={name}
           aria-label={name}
-          ref={register}
+          ref={register()}
           placeholder={placeholder}
           defaultValue={defaultValue || ''}
           {...fieldStyles.input}
