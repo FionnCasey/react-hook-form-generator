@@ -16,7 +16,7 @@ export const TextAreaField: FC<FieldProps<TextAreaFieldSchema>> = ({
   id,
   name,
   field,
-  defaultValue
+  defaultValue,
 }) => {
   const {
     label,
