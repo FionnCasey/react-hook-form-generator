@@ -154,7 +154,7 @@ export const arrayFieldStyles: ArrayFieldStyles = {
 
 export const ArrayField: FC<FieldProps<ArrayFieldSchema>> = ({
   name,
-  field
+  field,
 }) => {
   const {
     label,
@@ -285,7 +285,7 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
   name,
   field,
   id,
-  defaultValue
+  defaultValue,
 }) => {
   const {
     label,
@@ -309,7 +309,7 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
   const isVisible = useMemo(() => {
     return shouldDisplay ? shouldDisplay(values) : true;
   }, [values, shouldDisplay]);
-  
+
   return isVisible ? (
     <FormControl
       isRequired={!!isRequired}
@@ -333,15 +333,17 @@ export const ObjectField: FC<FieldProps<ObjectFieldSchema>> = ({
       </Flex>
       <Collapse isOpen={isOpen}>
         <Stack {...objectStyles.objectContainer}>
-          {Object.entries(field.properties).map(([fieldName, objectField], i) => (
-            <Box key={i} {...objectStyles.propertyContainer}>
-              {renderField(
-                [`${name}.${fieldName}`, objectField],
-                id,
-                defaultValue?.[fieldName]
-              )}
-            </Box>
-          ))}
+          {Object.entries(field.properties).map(
+            ([fieldName, objectField], i) => (
+              <Box key={i} {...objectStyles.propertyContainer}>
+                {renderField(
+                  [`${name}.${fieldName}`, objectField],
+                  id,
+                  defaultValue?.[fieldName]
+                )}
+              </Box>
+            )
+          )}
         </Stack>
       </Collapse>
       {!!helperText && (

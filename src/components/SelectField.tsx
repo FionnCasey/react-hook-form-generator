@@ -16,7 +16,7 @@ export const SelectField: FC<FieldProps<SelectFieldSchema>> = ({
   id,
   name,
   field,
-  defaultValue
+  defaultValue,
 }) => {
   const { label, helperText, isRequired, shouldDisplay, styles = {} } = field;
 
