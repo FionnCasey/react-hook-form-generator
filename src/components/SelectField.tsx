@@ -16,6 +16,7 @@ export const SelectField: FC<FieldProps<SelectFieldSchema>> = ({
   id,
   name,
   field,
+  defaultValue
 }) => {
   const { label, helperText, isRequired, shouldDisplay, styles = {} } = field;
 
@@ -46,7 +47,8 @@ export const SelectField: FC<FieldProps<SelectFieldSchema>> = ({
       <Select
         name={name}
         data-testid={id}
-        ref={register}
+        ref={register()}
+        defaultValue={defaultValue || field.options[0].value}
         {...fieldStyles.select}
       >
         {field.options.map(option => (

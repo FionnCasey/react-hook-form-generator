@@ -11,82 +11,64 @@ export const Default = () => (
   <Form
     title="Default Styles"
     schema={{
-      area: {
+      pillars: {
         type: 'array',
-        itemField: {
-          type: 'textArea',
-          label: 'Bing'
-        }
-      },
-      data: {
-        type: 'array',
-        label: 'Opening Hours',
+        label: 'Pillars',
         isCollapsable: true,
         itemField: {
           type: 'object',
-          styles: {
-            objectContainer: {
-              spacing: 0,
-              border: 0,
-              padding: 0,
-              margin: '2px 0 0 0',
-              display: 'grid',
-              gridTemplateColumns: '2fr 1fr 1fr',
-              gridColumnGap: '1rem'
-            },
-            propertyContainer: {
-              width: '100%'
-            }
-          },
           properties: {
-            dayOfWeek: {
-              type: 'select',
-              options: [
-                { value: 'Mon' }, { value: 'Tue' }, { value: 'Wed' }
-              ]
-            },
-            opens: {
+            name: {
               type: 'text',
-              label: 'Opening Time',
+              label: 'Pillar Name',
               isRequired: true,
-              styles: {
-                label: {
-                  fontSize: '0.85rem'
-                },
-                input: {
-                  isFullWidth: true,
-                  borderTopLeftRadius: 0,
-                  borderBottomLeftRadius: 0
-                }
-              }
             },
-            closes: {
+            action: {
+              type: 'textArea',
+              label: 'Action',
+            },
+            behaviour: {
+              type: 'textArea',
+              label: 'Behaviour',
+            },
+          },
+        },
+      },
+      metrics: {
+        type: 'array',
+        label: 'Commercial Metrics',
+        isCollapsable: true,
+        itemField: {
+          type: 'text',
+          label: 'Metric Name',
+          isRequired: true,
+        },
+      },
+      questions: {
+        type: 'array',
+        label: 'Employee Questions',
+        isCollapsable: true,
+        itemField: {
+          type: 'object',
+          properties: {
+            section: {
               type: 'text',
-              label: 'Closing Time',
+              label: 'Section',
               isRequired: true,
-              styles: {
-                control: {
-                  width: '100%'
-                },
-                label: {
-                  fontSize: '0.85rem'
-                },
-                input: {
-                  isFullWidth: true,
-                  borderTopLeftRadius: 0,
-                  borderBottomLeftRadius: 0
-                }
-              }
-            }
-          }
-        }
-      }
+            },
+            questions: {
+              type: 'array',
+              isCollapsable: true,
+              itemField: {
+                type: 'text',
+                label: 'Question Text',
+                isRequired: true,
+              },
+            },
+          },
+        },
+      },
     }}
     handleSubmit={action('Submit')}
-    formOptions={{
-      defaultValues: {
-        area: [{ value: 'bingo' }, { value: 'bango' }]
-      }
-    }}
   />
 );
